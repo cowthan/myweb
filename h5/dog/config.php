@@ -1,0 +1,3 @@
+<?php
+
+define("COMPANY_NAME", "Ò»Ö»¹·");

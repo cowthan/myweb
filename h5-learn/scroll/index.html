@@ -1,0 +1,256 @@
+<!doctype html>
+<html class="no-js" lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>网页内导航</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+			
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/modernizr-2.8.3.min.js"></script>
+		
+		<style>
+			* {
+				margin: 0;
+				padding:0;
+			}
+			
+			body{
+				font-size:12px;
+				line-height:1.7;
+			}
+			
+			li{
+				list-style:none;
+			}
+			
+			#content{
+				width: 800px;
+				margin: 0 auto;
+				padding: 20px;
+			}
+			
+			#content h1{
+				color:#0088bb;
+			}
+			
+			#content .item{
+				padding: 20px;
+				margin-bottom: 20px;
+				border: 1px dotted #0088bb;
+			}
+			
+			#content .item h2{
+				font-size; 16px;
+				font-weight: bold;
+				border-bottom: 2px solid #0088bb;
+				margin-bottom: 10px;
+			}
+			
+			
+			#content .item li{
+				display: inline;
+				margin-right:10px;
+			}
+			
+			#content .item li a img{
+				width: 230px;
+				height: 230px;
+				border: none;
+			}
+			
+			#menu{
+				position: fixed;
+				top: 100px;
+				left: 50%;
+				margin-left:400px; 
+				width: 80px;
+			}
+			
+			#menu ul li a{
+				display: block;
+				margin: 5px 0;
+				font-size: 14px;
+				font-weight: bold;
+				color:#333;
+				width:80px;
+				height:50px;
+				line-height: 50px;
+				text-decoration:none;
+				text-align: center;
+			}
+			
+			#menu ul li a:hover,
+			#menu ul li a.current{
+				color:#fff;
+				background: #0088bb;
+			}
+			
+			/* hack  IE6不支持position fixed */
+			
+			
+		</style>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <div id="menu">
+			<ul>
+				<li><a href="#item1" class="current">1F 男装</a></li>
+				<li><a href="#item2">2F 女装</a></li>
+				<li><a href="#item3">3F 美妆</a></li>
+				<li><a href="#item4">4F 数码</a></li>
+				<li><a href="#item5">5F 母婴</a></li>
+			</ul>
+		</div>
+		
+		<div id="content">
+			<h1>购物网</h1>
+			
+			<div id="item1" class="item">
+				<h2>F1 男装</h2>
+				<ul>
+					<li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/1F.jpg" alt="" /></a></li>
+				</ul>
+			</div>
+			
+			<div id="item2" class="item">
+				<h2>F2 女装</h2>
+				<ul>
+					<li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/2F.jpg" alt="" /></a></li>
+				</ul>
+			</div>
+			
+			<div id="item3" class="item">
+				<h2>F3 美妆</h2>
+				<ul>
+					<li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/3F.jpg" alt="" /></a></li>
+				</ul>
+			</div>
+			
+			
+			<div id="item4" class="item">
+				<h2>F4 数码</h2>
+				<ul>
+					<li><a href="#"><img src="img/4F.png" alt="" /></a></li>
+					<li><a href="#"><img src="img/4F.png" alt="" /></a></li>
+					<li><a href="#"><img src="img/4F.png" alt="" /></a></li>
+					<li><a href="#"><img src="img/4F.png" alt="" /></a></li>
+					<li><a href="#"><img src="img/4F.png" alt="" /></a></li>
+					<li><a href="#"><img src="img/4F.png" alt="" /></a></li>
+					<li><a href="#"><img src="img/4F.png" alt="" /></a></li>
+					<li><a href="#"><img src="img/4F.png" alt="" /></a></li>
+					<li><a href="#"><img src="img/4F.png" alt="" /></a></li>
+					<li><a href="#"><img src="img/4F.png" alt="" /></a></li>
+				</ul>
+			</div>
+			
+			<div id="item5" class="item">
+				<h2>F5 母婴</h2>
+				<ul>
+					<li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+					<li><a href="#"><img src="img/5F.jpg" alt="" /></a></li>
+				</ul>
+			</div>
+		
+		</div>
+		
+
+		
+		
+		<!-- ============================================= -->
+        <script src="http://libs.baidu.com/jquery/2.0.3/jquery.js"></script>
+        <script>window.jQuery || document.write('<script src="http://libs.baidu.com/jquery/2.0.3/jquery.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+		
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+        </script>
+		
+		<script>
+            $(document).ready(function(){
+						
+				$(window).scroll(function(){
+					///滚动事件
+					var top = $(document).scrollTop(); ///滚动条离顶部的距离，也就是document对应的元素离顶部的距离
+					var menu = $("#menu");
+					var items = $("#content").find(".item");
+					
+					var currentId = ""; //#item1
+					items.each(function(){
+						var m = $(this);
+						var itemTop = m.offset().top; ///每个item离页面顶部的距离
+						
+						if(top > itemTop - 200){
+							//滚动条的位置过了该楼层
+							currentId = "#" + m.attr("id");
+						}else{
+							return false; 
+						}
+					});
+					
+					
+					var currentMenu = menu.find(".current");
+					if(currentId && currentMenu.attr("href") != currentId){
+						currentMenu.removeClass("current");
+						menu.find("[href=" + currentId + "]").addClass("current");
+					}
+				});
+						
+			});
+			
+			
+			
+        </script>
+    </body>
+</html>

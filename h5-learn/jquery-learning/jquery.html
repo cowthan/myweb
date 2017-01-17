@@ -1,0 +1,1046 @@
+<html>
+<head>
+
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<title>jquery</title>
+	<meta charset="utf-8"/>
+</head>
+
+<body>
+
+<!-- ########################### start jquery ################ -->
+<script type="text/javascript">
+
+function jquery2012(which_lesson, which_session)
+{
+	if(which_lesson == "lesson1")
+	{
+		//alert("d");
+		var red = $("#p_lesson_1 span");
+		//===选择指定id的元素中包含的span 元素，并返回该元素的jQuery 对象引用指针
+		red.css("color","red"); 
+		//===调用 jQuery 对象的 css()函数，定义选取对象的 CSS 样式，
+		//===其中第一个参数表示CSS 属性名，第二个参数表示CSS 属性值。
+		
+	}
+	else if(which_lesson == "lesson2")
+	{
+		//alert("ddd");
+		var span1 = document.getElementById("span2_of_lesson2");
+		//获取节点对象，此时返回DOM 元素对象
+		var span2 = $(span1); //把DOM 对象转换为jQuery 对象
+		span2.css("color","blue"); //调用jQuery 对象的css()方法定义字体颜色为红色
+		
+		var span3 = $(span2)[0]; //把jQuery 对象转换为DOM 对象
+		span3.style.color = "red"; //调用DOM 对象的style 属性，设置字体颜色为蓝色
+	}
+	else if(which_lesson == "lesson3")
+	{
+		var span = $("#lesson3 span"); //获取文档中的span 元素
+	    span.each(function(n) //遍历span元素集合
+	    {
+	        this.style.fontSize = (n+1)*12+"px"; //为每个 span 元素定义字体大小样式
+	    });
+	}
+	else if(which_lesson == "lesson4")
+	{
+		
+	}
+	else if(which_lesson == "lesson5")
+	{
+		
+	}
+	else if(which_lesson == "lesson6")
+	{
+		if(which_session == "get")
+		{
+			var p2_text = $("#p2_lesson6").text();
+			alert(p2_text);
+		}
+		else if(which_session == "set")
+		{
+			$("#p3_lesson6").text("<img src='images/1.jpg' width='100' />");			
+		}
+	}
+	else if(which_lesson == "lesson7")
+	{		
+		if(which_session == "get")
+		{
+			var p1_text = $("#p1_lesson7").html();
+			alert(p1_text);
+		}
+		else if(which_session == "set")
+		{
+			$("#p2_lesson7").html("<p id='p2_lesson7'>苦逼2012－7,<span style='color:red;'>苦逼2012-8</span></p>")
+		}
+	}
+	else if(which_lesson == "lesson8")
+	{
+		if(which_session == "get")
+		{
+			var s_value = $("#select_lesson8").val();
+			alert(s_value);
+		}
+		else if(which_session == "set")
+		{
+			$("#input_lesson8").val('看来你点了...');
+		}
+		else if(which_session == "set2")
+		{	
+			//alert($("#radio_lesson8").val());
+			//$("input").val(["radio2", "check2"]);
+			//$("#ck_lesson8").val("check2");
+			$("#s2_lesson8").val(["1","3"]);			
+		}
+	}
+	else if(which_lesson == "lesson9")
+	{
+		
+	}
+	else if(which_lesson == "lesson10")
+	{
+		
+	}
+	else if(which_lesson == "lesson11")
+	{
+		
+	}
+	else if(which_lesson == "lesson12")
+	{
+		
+	}
+	else if(which_lesson == "lesson13")
+	{
+		
+	}
+	else if(which_lesson == "lesson14")
+	{
+		
+	}
+	else if(which_lesson == "lesson15")
+	{
+		
+	}
+	else if(which_lesson == "lesson16")
+	{
+		
+	}
+	else
+	{
+		
+	}
+}
+
+</script>
+<!-- ################## lesson 1  ########### -->
+<div id="lesson1">
+	<h3>Lesson1  看看，怎么回事啊这是？</h3>
+	<p>=== jquery对象是DOM对象的容器</p>
+	<p>=== 可能还是其他什么东西的容器</p>
+	<p>=== 可以从jquery获取其中的DOM对象，然后操作DOM对象，但这样就失去jquery的意义了</p>
+	<p>=== jquery提供了一整套属性和方法，能够直接方便的操作其中的第一个DOM对象，牛了个比了就</p>
+	<div><span>苦比2012</span></div>
+	<p id="p_lesson_1"><span>苦比2012</span></p>
+	
+	<script type="text/javascript">
+	jquery2012("lesson1");	
+	</script>
+	
+	<hr />
+</div>
+<!-- ################## lesson 2  ########### -->
+<div id="lesson2">
+	<h3>Lesson2 jquery对象和DOM对象：还行不行啊你</h3>
+	
+	<p>1  获取DOM对象：getElementByXXX(), XXX是ID，TagName, Class等,得到的是一个或一组DOM对象。</p>
+	<p>2  操作DOM对象：form.submit(), block.style.display="", ...</p>
+	<br />
+	<p>3  获取jquery对象：$("xxx")</p>
+	<p>4  操作jquery对象：使用内置方法</p>
+	
+	<p>===DOM对象转成jquery对象===</p>
+	<pre>
+var span1 = document.getElementById("span2_of_lesson2");//获取节点对象，此时返回DOM 元素对象
+var span2 = $(span1); //把DOM 对象转换为jQuery 对象
+	</pre>
+	<div><span>苦比2012</span></div>
+	<p><span id="span2_of_lesson2">苦比2012</span></p>
+	
+	<p>===从jquery对象获取DOM对象===</p>
+	<p>——jquery可以看作是DOM对象的容器</p>
+	<p>——当用jquery对象调用jquery方法时，实际是操作的第一个对象</p>
+	<p>——要从jquery对象得到DOM对象：</p>
+	<p>方法1：下标操作，spans[0]就是spans里的第一个DOM对象</p>
+	<p>方法2：get()方法，获得DOM对象集合</p>
+	<p>方法3：get(index)，获取指定下标的DOM对象</p>
+	
+	<pre>
+var span3 = $(span2)[0]; //把jQuery对象转换为DOM 对象
+span3.style.color = "red"; //然后操作得到的DOM对象
+	</pre>
+	
+	
+	<script type="text/javascript">
+	jquery2012("lesson2");		
+	</script>
+	
+	<p>===从jquery中查找指定的DOM对象，获得下标===</p>
+	<p>index(object)</p>
+	
+	<hr />
+</div>
+
+<!-- ################## lesson 3 ########### -->
+<div id="lesson3">
+	<h3>Lesson3 遍历jquery对象: 你累不</h3>
+	<p>======</p>
+	<span>苦</span>
+	<span>比</span>
+	<span>2</span>
+	<span>0</span>
+	<span>1</span>
+	<span>2</span>
+	<pre>
+&lt;script language="javascript" type="text/javascript"&gt;
+
+    var span = $("span"); //获取文档中的span 元素
+    span.each(function(n) //遍历span元素集合
+    {
+        //===取出来是DOM对象：this
+        this.style.fontSize = (n+1)*12+"px"; //为每个 span 元素定义字体大小样式
+        
+        //===也可以转换为jquery对象
+        //$(this).css("fontSize",(n+1)*12+"px");
+       
+    });
+    //function(n)为作用于jquery对象中每个元素的回调函数，n为从0开始算的循环索引
+
+&lt;/script&gt;
+	</pre>
+	<script type="text/javascript">
+		jquery2012("lesson3");		
+	</script>
+	<hr />
+</div>
+
+<!-- ################## lesson 4 ########### -->
+<div id="lesson4">
+	<h3>Lesson4  jquery对象所含DOM对象的个数： 多大啊这个</h3>
+	<p>--obj.size()：成员方法，返回元素个数</p>
+	<p>--obj.length：成员属性，返回元素个数</p>
+	<p>--俩一样</p>
+	
+	<pre>
+alert($("span").size()); //返回值为:当前页面所有span标签的个数
+alert($("span").length);
+	</pre>
+	
+	<script type="text/javascript">
+		jquery2012("lesson4");		
+	</script>
+	<hr />
+</div>
+
+<!-- ################## lesson 5 ########### -->
+<div id="lesson5">
+	<h3>Lesson5  关于DOM对象的属性（attr方法）：来，叔叔给你检查身体</h3>
+	<p>attr(name)：</p>
+	<p>===根据属性名（name参数）获取jQuery对象中第一个元素的对应属性值</p>
+	<p>===例如，返回超链接的href 属性值。</p>
+	<p>=== var href = $("a").attr("href");</p>
+	
+	<p>attr(key, value)：</p>
+	<p>===设置指定的属性为指定的值</p>
+	<p>=== $("a").attr("href"， "http://go.to.hell");</p>
+	
+	<p>attr(key, function)：</p>
+	<p>===设置指定的属性，使用指定的function的返回值</p>
+	<p>===设置当前图像的src属性为其title属性的值（鼠标放上则显示）</p>
+	<pre>
+&lt;img src="images/1.jpg" /&gt;
+&lt;script language="javascript" type="text/javascript"&gt;
+    $("img").attr("title",function(){
+        return this.src;
+    });
+&lt;/script&gt;
+	</pre>
+	<p>attr(property)：</p>
+	<p>===同时设置多个属性，省劲</p>
+	<p>===$("img").attr({width:"100", height:"100", title:"这是一个示例", alt:"示例图像"});</p>
+	
+	
+	<p>removeAttr(name)：</p>
+	<p>===删除标签的指定属性</p>
+	
+	
+	
+	<script type="text/javascript">
+		jquery2012("lesson5");		
+	</script>
+	<hr />
+</div>
+
+<!-- ################## lesson 6 ########### -->
+<div id="lesson6">
+	<h3>Lesson6  text()方法操作DOM元素的纯文本：所见即所得，还能再专业点不</h3>
+	<p>1   使用text()得到文本</p>
+	<p>===好像是会去掉所有标签，即得到了指定标签在页面中显示出来的文本</p>
+	<p id="p2_lesson6">p:苦逼2012--<span>span:还是苦逼2012但是也能得到--</span></p>
+	<input type="button" onclick="jquery2012('lesson6','get')" value="点撒" />
+	
+	<pre>
+&lt;p&gt;段落文本&lt;span&gt;1&lt;/span&gt;&lt;/p&gt;
+&lt;script language="javascript" type="text/javascript"&gt;
+    alert($("p").text());
+&lt;/script&gt;
+	</pre>
+	
+	<p>2   使用text(str)设置文本</p>
+	<p>===设置的文本是最终页面显示的文本</p>
+	<p>===就是说即使你在text()参数中添加了标签，还是被当作纯文本显示</p>
+	<p id="p3_lesson6">p:苦逼2012--<span>span:还是苦逼2012但是也能得到--</span></p>
+	<input type="button" onclick="jquery2012('lesson6','set')" value="点撒" />
+	
+	<p>3   text()总结：</p>
+	<p>===操作的是DOM对象在页面显示出来的纯文本，不论get还是set</p>
+	<p>===var p2_text = $("p").text();  这个得到的是所有能够取得的p元素的文本的拼接！set也是一样</p>
+	
+	<script type="text/javascript">
+		jquery2012("lesson6d");		
+	</script>
+	<hr />
+</div>
+
+<!-- ################## lesson 7 ########### -->
+
+<div id="lesson7">
+	<h3>Lesson7  html()方法操作DOM对象的文本：源代码层次的挖掘，有意思吗？ </h3>
+	<p>1   html()方法获得DOM对象包含的文本（源代码中，包括标签）</p>
+	<p>===得到了就得到了，实际上是得到的源代码吧</p>
+	<p>===alert($("#p1_lesson7").html());</p>
+	<p id="p1_lesson7">苦逼2012－7, <span>苦逼2012-8</span></p>
+	<input type="button" onclick="jquery2012('lesson7','get')" value="点撒" />
+	
+	<p>2    html(str)方法设置DOM文本（源代码，标签就当作标签）</p>
+	<p>===这里设置的是源代码级别，会影响页面，不仅仅是纯文本</p>
+	<p>===$("#p2_lesson7").html("&lt;p id="p2_lesson7"&gt;苦逼2012－7,&lt;span style="color:red;"&gt;苦逼2012-8&lt;/span&gt;&lt;/p&gt;")</p>
+	<p id="p2_lesson7">苦逼2012－7, <span>苦逼2012-8</span></p>
+	<input type="button" onclick="jquery2012('lesson7','set')" value="点撒" />
+	<p></p>
+	
+	
+	
+	<script type="text/javascript">
+		jquery2012("lesson2");		
+	</script>
+	<hr />
+</div>
+
+<!-- ################## lesson 8 ########### -->
+<div id="lesson8">
+	<h3>Lesson8  val()方法操作表单的值：填的不对，我也不知道哪儿错了</h3>
+	<p>1   val()：获取表单控件的值</p>
+	<p>===$("select_lesson8").val()</p>
+	<select id="select_lesson8" multiple="multiple">
+		<option value="1">选项1</option>
+		<option value="2" selected="selected">选项2</option>
+		<option value="3" selected="selected">选项3</option>
+	</select>
+	<input type="button" onclick="jquery2012('lesson8','get')" value="点撒" />
+	
+	<p>2   val(str)：设置表单控件的值</p>
+	<p>===$("select_lesson8").val('2,3')</p>
+	<input type="text" id="input_lesson8" value="点按钮！" />
+	<input type="button" onclick="jquery2012('lesson8','set')" value="点撒" />
+	
+	<p>3   val(str)：设置表单控件的值</p>
+	<input type="radio" id="radio_lesson8" name="radio_lesson8" value="radio1" />单选按钮1
+	<input type="radio" id="radio_lesson8" name="radio_lesson8" value="radio2" />单选按钮2
+	<input type="checkbox" id="ck_lesson8" name="ck_lesson8" value="check1" />复选框1
+	<input type="checkbox" id="ck_lesson8" name="ck_lesson8" value="check2" />复选框2
+	<select id="s2_lesson8" name="s2_lesson8" multiple="multiple">
+		<option value="1">选项1</option>
+		<option value="2">选项2</option>
+		<option value="3">选项3</option>
+	</select>
+	<input type="button" onclick="jquery2012('lesson8','set2')" value="点撒" />
+	<script type="text/javascript">
+		$("input").val(["radio2","check2"]);
+		$("select").val(["1","3"]);
+	</script>
+	
+	<script type="text/javascript">
+		jquery2012("lesson8");		
+	</script>
+	<hr />
+</div>
+
+<!-- ################## lesson 9 ########### -->
+<div id="lesson9">
+ <h3>Lesson9   jquery操作CSS样式： 想咋样就咋样</h3>
+ <p>1   css(name)获取行内样式</p>
+ <p>===css(name)只能获取行内样式，相当于DOM_obj.style.xxx="xx:xx;"</p>
+ <p>===$("#p1_lesson9").css("border")</p>
+ <p id="p1_lesson9" style="border:solid 1px blue;">苦比2012</p>
+ <input type="button" onclick="jquery2012('lesson9','get')" value="点撒" />
+ 
+ <p>2   css(name, value)设置行内样式</p>
+ <p>===相当于：相当于DOM_obj.style.xxx="xx:xx;"</p>
+ <p>===$("#p2_lesson9").css("background", "red");</p>
+ <p id="p2_lesson9" style="border:solid 1px blue;">苦比2012</p>
+ <input type="button" onclick="jquery2012('lesson9','set')" value="点撒" />
+ 
+ <p>3   一次设置多个属性</p>
+ <pre>
+$("p").css({ 
+ color:"blue", 
+ "font­size":"14px", 
+ "background­color":"red"
+});  
+ </pre>
+ 
+ <script type="text/javascript">
+  jquery2012("lesson9");  
+ </script>
+ <hr />
+</div>
+<!-- ################## lesson 10 ########### -->
+<div id="lesson10">
+ <h3>Lesson10   获取元素的位置（左上角），操作元素大小(可设置)：你真以为你有隐私是吧</h3>
+ <p>1   offset()：获取元素位置，(left, top)</p>
+ <p>===var offset = $("#p1_lesson10").offset();</p>
+ <p>===alert( offset.top + ", " + offset.left );</p>
+ <p>===获得的标签的左上角的坐标</p>
+ <p id="p1_lesson10" style="border:solid 1px blue;">苦比2012</p>
+ <input type="button" onclick="jquery2012('lesson10','get')" value="点撒" />
+ 
+ <p>2    height(), width()：获取高度和宽度值，单位是px</p>
+ <p>===var ele = $("#p2_lesson10")</p>
+ <p>===alert("大小是：" + ele.width() + ", " + ele.height())</p>
+ <p id="p2_lesson10" style="border:solid 1px blue;">苦比2012</p>
+ <input type="button" onclick="jquery2012('lesson10','get2')" value="点撒" />
+ 
+ <p>3    height(val), width(val)：设置高度和宽度值</p>
+ <p>===如果不指定单位，默认就是px</p>
+ <p>===$("#p3_lesson10").height("50");</p>
+ <p>===$("#p3_lesson10").width("500");</p>
+ <p id="p3_lesson10" style="border:solid 1px blue;">苦比2012</p>
+ <input type="button" onclick="jquery2012('lesson10','set')" value="点撒" />
+ 
+ <script type="text/javascript">
+  jquery2012("lesson10");  
+ </script>
+ <hr />
+</div>
+<!-- ################## lesson 11 ########### -->
+<div id="lesson11">
+ <h3>Lesson11   事件</h3>
+ 
+ <p>1   onload：页面初始化事件</p>
+ <p>===DOM方法1：window.onload = function(){}</p>
+ <p>===DOM方法2：&lt;body onload="function()"&gt;</p>
+ <p>===jquery方法：$(document).ready(function(){alert("页面加载完毕")});</p>
+ <br />
+ <p>===$(document).ready()可以无限次的注册，注册的函数会在页面加载完之后按先后顺序调用</p> 
+ <p>===要确保在 body 元素的 onload 事件属性内没有注册函数，否则不会触发$(document).ready()事件</p>
+ <p id="p1_lesson11" style="border:solid 1px blue;">xxxxxx</p>
+ <script type="text/javascript">
+   $(document).ready(function(){
+     $("#p1_lesson11").text("苦比2012，页面加载完毕...");
+    });
+ </script>
+ 
+ <p>2    bind()：为指定元素的指定动作绑定指定回调函数</p>
+ <p>===（1）  bind(type,[data],fn)。</p>
+ <p>===$("div").bind("click",function(){});</p> 
+ 
+ <p id="p2_lesson11" style="border:solid 1px blue;">苦比2012: 使劲点我...</p>
+ <script type="text/javascript">
+   var obj = $("#p2_lesson11");
+   obj.bind("click", function(){ 
+     obj.width(obj.width()-20);
+     obj.height(obj.height()+10);
+     });
+ </script>
+ 
+ <p>===（2） 带参数的bind():</p>
+ <p>===用event.data访问<br />
+  $("div").bind("click",{who:"zhu"},function(event){ <br />
+             alert(event.data.who); <br />
+  }); <br />
+  ===
+ </p> 
+ <p>===（3）删除绑定事件：unbind(type, [data])</p>
+ <p>===$("div").unbind("click"); </p>
+ 
+ <p>3   one()：绑定消息响应，但仅执行一次，完事后注销</p>
+ <p>===one(type,[data],fn)</p> 
+ <p>===看做bind和unbind的组合</p>
+ 
+ 
+ <p>4   trigger()：触发自定义事件</p>
+ <p>===trigger(type,[data])</p> 
+ <p>===在顺序执行或其他消息响应中：$("div").trigger("me"); </p>
+ <p>===这会触发me事件的消息响应函数，如下：</p>
+ <p>===<br />
+  $("div").bind("me", function () { <br />
+   alert($(this).text()); <br />
+  }); <br />
+ === 
+ </p>
+ <p>===即：什么时候trigger了"me"事件，什么时候就执行bind("me")绑定的函数</p> 
+ 
+ <p>5   trigger触发常规事件，常规事件自己也触发常规事件</p>
+ <pre>
+//===绑定onclick事件：  单击会触发
+$("div").bind("click", function () { 
+    alert($(this).text()); 
+}); 
+//===当onmouseover时，trigger onclick事件：也触发
+$("p").bind("mouseover",function(){ 
+    $("div").trigger("click"); 
+}); 
+ </pre>
+ 
+ <p>6    triggerHandler触发常规事件，但是常规事件自己不触发常规事件</p>
+ <pre>
+//===绑定onclick事件：  单击不会触发，因为后面triggerHandler了
+$("div").bind("click", function () { 
+    alert($(this).text()); 
+}); 
+//===当onmouseover时，trigger onclick事件：也触发
+$("p").bind("mouseover",function(){ 
+    $("div").triggerHandler("click"); 
+}); 
+ </pre> 
+ <p id="p3_lesson11" style="border:solid 1px blue;">苦比2012: 使劲点我也没反应</p>
+ <script type="text/javascript">
+   //===绑定onclick事件：  单击不会触发，因为后面triggerHandler了
+   $("#p3_lesson11").bind("click", function(){
+       alert($("#p3_lesson11").text());
+   });
+   //===当onmouseover时，trigger onclick事件：也触发
+   $("#p3_lesson11").bind("mouseover", function(){ 
+       $("#p3_lesson11").trigger("click");
+   });
+ </script>
+ <p></p>
+ 
+ <p>7   hover(fn, fn)鼠标悬停和移开都会触发的事件：绑定两个函数</p>
+ 
+ <pre>
+$("#p4_lesson11").hover( 
+    function(){ 
+        $(this).css("color","red"); 
+    }, 
+    function(){ 
+        $(this).css("color","transparent"); 
+    } 
+);   
+</pre> 
+<p id="p4_lesson11" style="border:solid 1px blue;">苦比2012: 鼠标悬停和移出事件</p>
+<script type="text/javascript">
+   $("#p4_lesson11").hover( 
+       function(){ 
+           $(this).css("color","red");
+       }, 
+       function(){ 
+           $(this).css("color","transparent");
+       } 
+   );
+ </script>
+ 
+ <p>8  toggle(fn, fn)：鼠标打击和松开事件</p>
+ <pre>
+$("p").toggle( 
+    function(){ 
+       $(this).css("color","red"); 
+    }, 
+    function(){ 
+        $(this).css("color","transparent");
+    } 
+);
+  </pre>
+ <p id="p5_lesson11" style="border:solid 1px blue;">苦比2012: 鼠标单击和松开事件</p>
+ <script type="text/javascript">
+   $("#p5_lesson11").toggle( 
+       function(){ 
+          $(this).css("color","red");
+       }, 
+       function(){ 
+           $(this).css("color","transparent");
+       } 
+   );
+ </script>
+ <p></p>
+ <p></p>
+ <p></p>
+ <p></p>
+ <p></p>
+ 
+ 
+ <script type="text/javascript">
+  jquery2012("lesson11");  
+ </script>
+ <hr />
+</div>
+
+<!-- ################## lesson 12 ########### -->
+
+<div id="lesson12">
+	<h3>Lesson12  jquery封装好的事件，绑定和触发： 你没干不等于事没成...</h3>
+	<p>1    如何绑定回调函数</p>
+
+<pre>
+&lt;p&gt;段落文本&lt;/p&gt;
+&lt;script language="javascript" type="text/javascript"&gt;
+    $("p").click(
+        function(){
+            $(this).css("color","red");
+        }
+    );
+&lt;/script&gt;
+</pre>
+	
+	<p>2  直接触发事件 </p>
+	<p>===click()会直接触发事件，不需要用户点击了</p>
+	
+	<p>3  jquery事件方法：</p>
+	
+	<p>===不知道什么事件：可触发</p>
+	<p>===blur(): onblur，失去焦点</p>
+	<p>===focus(): onfocus，获得焦点</p>	
+	<p>===change(): onchange，更改表单的value？</p>
+	<p>===error(): onerror？？？</p>
+	<p>===select(): onselect，选中</p>
+	<p>===submit(): onsubmit，提交</p>
+	
+	<p>===不知道什么事件：不可触发</p>
+	<p>===resize(): onresize，窗口大小改变？</p>
+	<p>===scroll(): onscroll，窗口滚动条改变</p>
+	<p>===load(): onload, 文档载入完毕
+	<p>===unload(): onunload，删除文档？</p>
+	
+	<p>===鼠标点击事件：可触发</p>
+	<p>===click(): onclick，鼠标单击</p>
+	<p>===dblclick(): ondblclick，鼠标双击</p>
+	
+	<p>===鼠标移动事件：不可触发</p>
+	<p>===mousemove(fn): onmousemove，鼠标移动</p>
+	<p>===mouseup(fn): onmouseup，鼠标往上走？</p>
+	<p>===mousedown(fn): onmousedown，鼠标往下走？</p>
+	<p>===mouseover(fn): onmouseover，鼠标进入</p>
+	<p>===mouseout(fn): onmouseout，鼠标移出</p>
+	
+	<p>===按键事件：可触发</p>
+	<p>===keypress(): onkeypress，有键按下并弹起？？？</p>
+	<p>===keyup(): onkeyup，按键弹起</p>
+	<p>===keydown(): onkeydown，有键按下</p>	
+	
+	<script type="text/javascript">
+		jquery2012("lesson12");		
+	</script>
+	<hr />
+</div>
+
+<!-- ################## lesson 13 ########### -->
+
+<div id="lesson13">
+	<h3>Lesson13   基本动画（操作可见性且上下左右滑动）： 能看见不？</h3>
+	<p>1   show()：显示隐藏的元素</p>
+	<p>===show()：显示</p>
+	<p>===show(speed, [fn])：显示的速度（由小到大？），fn为显示完毕后的回调函数</p>
+	
+	<p id="p1_lesson13" style="border:solid 1px blue;display:none;">苦比2012: 点击按钮</p>
+	<input id="button1_lesson13" type="button"  value="点撒" />
+	 <script type="text/javascript">
+	 	$("#button1_lesson13").click(function(){	 		
+	 		$("#p1_lesson13").show(2000, function(){alert("看见没？");});
+	 	});	  
+	 </script>
+	
+	<p>2   hide()：隐藏元素</p>
+	<p>===hide()：隐藏</p>
+	<p>===hide(speed, [fn])：隐藏的速度，fn为回调函数</p>
+	
+	<p id="p2_lesson13" style="border:solid 1px blue;">苦比2012: 点击按钮</p>
+	<input id="button2_lesson13" type="button"  value="点撒" />
+	 <script type="text/javascript">
+	 	$("#button2_lesson13").click(function(){	 		
+	 		$("#p2_lesson13").hide(2000, function(){alert("看见没？");});
+	 	});	  
+	 </script>
+	
+	<p>3   toggle()：切换可见状态</p>
+	<p>===对于显示的元素，调用hide()，对于隐藏的元素，调用show()</p>
+	<p>===也可以toggle(speed, fn)</p>
+	
+	<p id="p3_lesson13" style="border:solid 1px blue;">苦比2012: 点击按钮</p>
+	<input id="button3_lesson13" type="button"  value="点撒" />
+	 <script type="text/javascript">
+	 	$("#button3_lesson13").click(function(){	 		
+	 		$("#p3_lesson13").toggle(2000, function(){});
+	 	});	  
+	 </script>
+	
+	<script type="text/javascript">
+		jquery2012("lesson13");		
+	</script>
+	<hr />
+</div>
+
+<!-- ################## lesson 14 ########### -->
+<div id="lesson14">
+	<h3>Lesson14   基本动画（滑动）： </h3>
+	<p>1   slideDown(str)：显示隐藏元素，滑动效果</p>
+	<p>===$("p").slideDown("slow");</p>
+	<p id="p1_lesson14" style="border:solid 1px blue;display:none;">苦比2012: 点击按钮</p>
+	<input id="button1_lesson14" type="button"  value="点撒" />
+	 <script type="text/javascript">
+	 	$("#button1_lesson14").click(function(){
+	 		//alert("ddddf");
+	 		$("#p1_lesson14").slideDown("slow");
+	 	});	  
+	 </script>
+	
+	<p>2   slideUp(str)：隐藏页面的元素，滑动效果</p>
+	<p>===$("p").slideUp("slow");</p>
+	<p id="p2_lesson14" style="border:solid 1px blue;">苦比2012: 点击按钮</p>
+	<input id="button2_lesson14" type="button"  value="点撒" />
+	 <script type="text/javascript">
+	 	$("#button2_lesson14").click(function(){
+	 		//alert("ddddf");
+	 		$("#p2_lesson14").slideUp("slow");
+	 	});	  
+	 </script>
+	 
+	 <p>3   slideToggle(speed, [fn])：隐藏或显示页面元素，滑动效果</p>
+	<p>===$("p").slideToggle("slow");</p>
+	<p id="p3_lesson14" style="border:solid 1px blue;">苦比2012: 点击按钮</p>
+	<input id="button3_lesson14" type="button"  value="点撒" />
+	 <script type="text/javascript">
+	 	$("#button3_lesson14").click(function(){
+	 		//alert("ddddf");
+	 		$("#p3_lesson14").slideToggle("slow");
+	 	});	  
+	 </script>
+	<hr />
+</div>
+
+<!-- ################## lesson 15 ########### -->
+
+<div id="lesson15">
+	<h3>Lesson15   淡入淡出: 朦胧美</h3>
+	<p>1   slideDown(str)：显示隐藏元素，渐隐效果</p>
+	<p>===$("p").fadeIn("slow");</p>
+	<p id="p1_lesson15" style="border:solid 1px blue;display:none;">苦比2012: 点击按钮</p>
+	<input id="button1_lesson15" type="button"  value="点撒" />
+	 <script type="text/javascript">
+	 	$("#button1_lesson15").click(function(){
+	 		//alert("ddddf");
+	 		$("#p1_lesson15").fadeIn(2000);//"slow");
+	 	});	  
+	 </script>
+	
+	<p>2   fadeOut(str)：隐藏页面的元素，渐隐效果</p>
+	<p>===$("p").slideUp("slow");</p>
+	<p id="p2_lesson15" style="border:solid 1px blue;">苦比2012: 点击按钮</p>
+	<input id="button2_lesson15" type="button"  value="点撒" />
+	 <script type="text/javascript">
+	 	$("#button2_lesson15").click(function(){
+	 		//alert("ddddf");
+	 		$("#p2_lesson15").fadeOut(2000);
+	 	});	  
+	 </script>
+	 
+	 <p>3   闪动效果</p>
+	<pre>
+&lt;p style="display:none;"&gt;段落文本&lt;/p&gt;
+&lt;script language="javascript" type="text/javascript"&gt;
+    $("p").fadeIn(2000);
+    $("p").bind("mouseover",function(){
+        $("p").fadeOut(100);
+        $("p").fadeIn(100);
+        $("p").fadeOut(100);
+        $("p").fadeIn(100);
+    });
+&lt;/script&gt;
+	</pre>
+	<p id="p3_lesson15" style="border:solid 1px blue;">苦比2012: 点击按钮</p>
+	<input id="button3_lesson15" type="button"  value="点撒" />
+	 <script type="text/javascript">
+	 	
+	 		$("#p3_lesson15").fadeIn(2000);
+	 	    $("#p3_lesson15").bind("mouseover",function(){
+	 	        $("#p3_lesson15").fadeOut(100);
+	 	        $("#p3_lesson15").fadeIn(100);
+	 	        $("#p3_lesson15").fadeOut(100);
+	 	        $("#p3_lesson15").fadeIn(100);
+	 	    });
+	 	  
+	 </script>
+	 
+	 <p>4   fadeTo()：透明度</p>
+	<pre>
+&lt;p&gt;段落文本&lt;/p&gt;
+&lt;script language="javascript" type="text/javascript"&gt;
+    $("p").fadeTo("slow", 0.2, function(){
+        $(this).fadeTo("slow", 1);
+    });
+&lt;/script&gt;
+	</pre>
+	<p id="p4_lesson15" style="border:solid 1px blue;">苦比2012: 点击按钮</p>
+	<input id="button4_lesson15" type="button"  value="点撒" />
+	 <script type="text/javascript">
+	 	$("#button4_lesson15").click(function(){
+
+			 	$("#p4_lesson15").fadeTo("slow", 0.2, function(){
+			        $(this).fadeTo("slow", 1);
+			    });
+	 		
+	 	});
+	 </script>
+</div>
+
+<!-- ################## lesson 16########### -->
+<div id="lesson16">
+ <h3>Lesson16   jquery选择器：你说你叫啥吧</h3>
+ <p>===</p> 
+ <p>===tag   ：标签选择器，这个太霸道</p>
+ <p>===.class：类选择器，class</p>
+ <p>===#id    ：id选择器, id</p>
+ <p>===*       ： 全额匹配器，这个更霸道</p>
+ <p>===select1, select2, select3：selectX是一个选择器，将多个选择器的结果合并后返回</p>
+ <p>===ancestor  descendant：祖先和后代， 有空格，匹配father下的所有符合son的元素，这是两个选择器</p>
+ <p>===parent&gt;child ：子选择器，选择父元素下的所有子元素</p>
+ <p>===prev + next：相邻选择器，匹配所有紧接在prev元素后的next元素</p> 
+ <p>===prev~siblings：兄弟选择器，选择prev的符合要求的兄弟</p>
+ <br />
+ <p>===[attribute]：属性选择器，选择包含指定属性的元素</p>
+ <p>===[attribute=value]：属性选择器，匹配指定属性等于指定值的元素</p>
+ <p>===[attribute!=value]：匹配属性不等于指定值的元素</p>
+ <p>===[attribute^=value]：匹配属性值是以value开头的元素</p>
+ <p>===[attribute$=value]：匹配属性值是以value结尾的元素</p>
+ <p>===[attribute*=value]：匹配属性值包含value的元素，contain</p>
+ <p>===[selector1][selector3][selector3]：多个属性选择器组合</p>
+ <br />
+ <p>===伪选择器</p>
+ <p>===:firs —— 匹配找到的第一个元素</p>
+ <p>===:last —— 匹配找到的最后一个元素</p>
+ <p>===:not(selector)——去除与selector匹配的元素</p>
+ <p>===:even——从0开始计数，匹配所有索引值为偶数的元素</p>
+ <p>===:odd——从0开始计数，匹配所有索引值为奇数的元素</p>
+ <p>===:eq(index)——从0开始计数，匹配指定索引的元素</p>
+ <p>===:gt(index)——匹配大于给定索引值的元素</p>
+ <p>===:lt(index)——匹配小于给定索引值的元素</p>
+ <p>===:header——匹配所有如h1，h2，h3之类的标题元素</p>
+ <p>===:animated——匹配所有没有在执行动画效果中的元素</p>
+ <p>===:first-child——匹配选定元素的第一个子元素</p> 
+ <p>===:last-child——匹配选定元素的最后一个子元素</p>
+ <p>===:only-child——如果某个元素是父元素的唯一子元素，则匹配之</p>
+ <p>===:nth-child(index/even/odd/equation)——匹配父元素下第N个子或奇偶元素</p>
+ <p>===:contains(text)——匹配包含给定文本的元素</p>
+ <p>===:empty——匹配所有不包含子元素或文本的元素</p>
+ <p>===:has(selector)——匹配含有选择器selector所匹配元素的元素</p>
+ <p>===:parent——匹配含有子元素或文本的元素</p>
+ <p>===:hidden——匹配所有不可见元素，包括hidden的input元素</p>
+ <p>===:visible——匹配所有可见的元素</p>
+ <br />
+ <p>===表单选择器</p>
+ <p>===:input——匹配所有：input，textarea，button，select</p>
+ <p>===:text——匹配所有单行文本框</p>
+ <p>===:password——匹配所有密码框</p>
+ <p>===:radio——匹配所有单选按钮</p>
+ <p>===:checkbox——匹配所有复选框</p>
+ <p>===:hidden——匹配所有不可见元素，或hidden元素</p>
+ <br />
+ <p>===:submit——匹配所有提交按钮</p>
+ <p>===:reset——匹配所有重置按钮</p>
+ <br />
+ <p>===:image——匹配所有图像域</p>
+ <p>===:file——匹配所有文件域</p>
+ <br /> 
+ <p>===:enabled——匹配所有可用元素</p>
+ <p>===:disabled——匹配所有不可用元素</p>
+ <p>===:checked——匹配所有选中的复选框元素</p>
+ <p>===:selected——品牌所有选中的选择列表元素</p>
+ <br /> 
+ <p>===筛选函数</p>
+ <p>===eq(index)：获取指定索引的元素，索引值从0开始算</p>
+ <p>===hasClass(class)：检查当前的元素是否含有特定的类，如果有则返回true</p>
+ <p>===filter(selector)：使用selector筛选出元素集合，逗号分隔多个selector</p>
+ <p>===filter(fn)：取fn的返回值，筛选出与返回值匹配的元素集合</p>
+ <p>===is(selector)：只要有一个元素符合，就返回true</p>
+ <p>===not(expr)：删除与指定表达式匹配的元素</p>
+ <p>===map(callback):将一组元素转换成其他数组，不论是否是元素数组</p>
+ <p>===slice(start, [end])：选取一个匹配的子集，substr</p>
+ <p>===add(expr)：将匹配expr的元素添加到当前jquery对象</p>
+ <p>===children([expr])：元素集合中，每一个元素的子元素的集合</p>
+ <p>===contents()：匹配元素内部所有子节点，包括text，对于iframe，取文档内容</p>
+ <p>===find(expr)：搜索所有与指定表达式匹配的元素，此函数是找出正在处理的元素的后代元素</p> 
+ <p>===next([expr])：取得一个包含匹配的元素集合中每一个元素紧邻的后面同辈元素的元素集合 </p>
+ <p>===nextAll([expr]) ： 查找当前元素之后的所有元素 </p>
+ <p>===parent([expr])  取得一个包含着所有匹配元素的唯一父元素的元素集合 </p>
+ <p>===parents([expr])  取得一个包含着所有匹配元素的祖先元素的元素集合（不包含根元素） </p>
+ <p>===prev([expr])  取得一个包含匹配的元素集合中每一个元素紧邻的前一个同辈元素的元素集合 </p>
+ <p>===prevAll([expr])  查找当前元素之前所有的同辈元素，可以用表达式过滤 </p>
+ <p>===siblings([expr]) ：取得一个包含匹配的元素集合中每一个元素的所有唯一同辈元素的元素集合。可以用可选的表达式进行筛选  </p>
+ <p>===andSelf()  加入先前所选的当前元素中，对于筛选或查找后的元素，要加入先前所选元素时将会很有用 </p>
+ <p>===end()  回到最近的一个“破坏性”操作之前，即将匹配的元素列表变为前一次的状态 </p>
+ <p>===</p>
+ <p>===</p>
+ 
+ <script type="text/javascript">
+  jquery2012("lesson2");  
+ </script>
+ <hr />
+</div>
+<!-- ################## lesson 17 ########### -->
+<div id="lesson17">
+ <h3>Lesson17    文档处理：是你的不一定是你的，不是你的一定不是你的</h3>
+ <p>1   内部插入：append(str)</p>
+ <p>===类似于DOM_obj.appendChild()</p>
+ <p>===将str插入到元素尾部，源代码级别</p>
+ <p>===$("div").append("&lt;span style='color:red'&gt;套子&lt;/span&gt;"); </p>
+ <p>===jQuery中的append()方法能够同时为jQuery对象中多个元素增加内容</p>
+ <p>===所增加的内容不需要先定义成节点，可以直接把它作为字符串插入到元素内</p>
+ 
+ <div id="div1_lesson17" style="border:solid 1px blue;">
+  <p>谁给点东西吃撒......</p>
+ </div>
+ <input type="button" value="给你" id="button1_lesson17" />
+ <script type="text/javascript">
+  $("#button1_lesson17").click(function(){
+    $("#div1_lesson17").append("<span>吃吧...</span><br />")
+   });
+ </script>
+ 
+ <p>2   内部插入：prepend(str)</p>
+ <p>===将str插入到元素最前面，源代码级别</p>
+ <p>===$("div").prepend("&lt;span style='color:red'&gt;套子&lt;/span&gt;"); </p>
+ <p>===jQuery中的append()方法能够同时为jQuery对象中多个元素增加内容</p>
+ <p>===所增加的内容不需要先定义成节点，可以直接把它作为字符串插入到元素内</p>
+ 
+ <div id="div2_lesson17" style="border:solid 1px blue;">
+  <p>谁给点东西吃撒......</p>
+ </div>
+ <input type="button" value="给你" id="button2_lesson17" />
+ <script type="text/javascript">
+  $("#button2_lesson17").click(function(){
+    $("#div2_lesson17").prepend("<span>吃吧...</span><br />")
+   });
+ </script>
+ 
+ <p>3  内部插入：appendTo(selector)</p>
+ <p>===将当前元素插入到参数指定的元素的尾部，源代码级别</p>
+ <p>===一次性操作</p>
+ <p>===$("#p").appendTo("#div"); </p>
+ <p id="p3_lesson17" style="border:solid 1px red;">这是好吃的（巧克力）</p>
+ <div id="div3_lesson17" style="border:solid 1px blue;">
+  <p>谁把上面的东西拿下来给我吃啊......</p>
+ </div>
+ <input type="button" value="给你" id="button3_lesson17" />
+ <script type="text/javascript">
+  $("#button3_lesson17").click(function(){
+    $("#p3_lesson17").appendTo("#div3_lesson17");
+   });
+ </script>
+ 
+ <p>4  内部插入：prependTo(selector)</p>
+ <p>===将当前元素插入到参数指定的元素的最前面，源代码级别</p>
+ <p>===一次性操作</p>
+ <p>===$("#p").prependTo("#div"); </p>
+ <p id="p4_lesson17" style="border:solid 1px red;">这是好吃的（巧克力）</p>
+ <div id="div4_lesson17" style="border:solid 1px blue;">
+  <p>谁把上面的东西拿下来给我吃啊......</p>
+ </div>
+ <input type="button" value="给你" id="button4_lesson17" />
+ <script type="text/javascript">
+  $("#button4_lesson17").click(function(){
+    $("#p4_lesson17").prependTo("#div4_lesson17");
+   });
+ </script>
+ 
+ <p>5  外部插入：after(content)和before(content)</p>
+ <p>===在当前元素后面或前面插入参数指定的：jquery对象，html代码，字符串。源代码级别</p>
+ <p>===成为兄弟元素</p>
+ <p>===$("#div1").after($("#div2")); //把div2插入到div1的后面 </p>
+ 
+ <div id="div6_lesson17" style="border:solid 1px red;">我是div6</div>
+ <div id="div7_lesson17" style="border:solid 1px blue;">我是div7</div>
+ <input type="button" value="div7.after($('#div6'))" id="button5_lesson17" />
+ <input type="button" value="div7.before($('#div6'))" id="button6_lesson17" />
+ <script type="text/javascript">
+  $("#button5_lesson17").click(function(){
+    $("#div7_lesson17").after($("#div6_lesson17"));
+   });
+  $("#button6_lesson17").click(function(){
+    $("#div7_lesson17").before($("#div6_lesson17"));
+   });
+ </script>
+ 
+ <p>6  外部插入：insertAfter(content)和insertBefore(content)</p>
+ <p>===把当前元素插入到参数指定的元素的后面或前面。源代码级别</p>
+ <p>===成为兄弟元素</p>
+ <p>===$("#div1").insertAfter($("#div2")); //把div1插入到div2的后面 </p>
+ 
+ <div id="div8_lesson17" style="border:solid 1px red;">我是div8</div>
+ <div id="div9_lesson17" style="border:solid 1px blue;">我是div9</div>
+ <input type="button" value="div8.insertAfter($('#div9'))" id="button7_lesson17" />
+ <input type="button" value="div8.insertBefore($('#div9))" id="button8_lesson17" />
+ <script type="text/javascript">
+  $("#button7_lesson17").click(function(){
+    $("#div8_lesson17").insertAfter($("#div9_lesson17"));
+   });
+  $("#button8_lesson17").click(function(){
+    $("#div8_lesson17").insertBefore($("#div9_lesson17"));
+   });
+ </script>
+ 
+ <p>6  嵌套结构：结构化构建</p>
+ <p>===对指定元素进行遍历</p>
+ <p>===wrap(html)：对于每一个匹配的元素，用指定html标签包起来</p>
+ <p>===wrap(DOM_obj)：对于每一个匹配的元素，用指定元素包起来</p>
+ <p>===将指定元素作为一个整体</p>
+ <p>===wrapAll(html)：对于所有匹配的元素，统一用一个html标签包起来</p>
+ <p>===wrapAll(DOM_obj)：对于所有匹配的元素，统一用一个元素包起来</p>
+ <p>===对于每一个指定元素，将其内部的内容包起来</p>
+ <p>===wrapInner(html)</p>
+ <p>===wrapInner(DOM_obj)</p>
+ 
+ <p>7  替换结构</p>
+ <p>===jquery.replaceWith(content)：用指定html或DOM对象替换当前jquery对象</p>
+ <p>===jquery.replaceAll(selector)：使用当前jquery对象去替换所有selector匹配的元素</p>
+ 
+ <br />
+ <p>===$("span").replaceWith("&lt;div&gt;盒子&lt;/div&gt;"); </p>
+ <p>===$("&lt;div&gt;盒子&lt;/div&gt;").replaceAll("span"); </p>
+ <p>===这两句代码等价，体会体会</p>
+ 
+ <p>8  删除结构</p>
+ <p>===empty()：清空当前jquery对象的内部子节点和文本，剩下孤零零的标签自己</p>
+ <p>===remove([expr]): 删除匹配的元素 </p>
+ <p>===remove()：删除所有，连标签本身也删除了</p>
+ 
+ <p>9    复制</p>
+ <p>===clone()：把匹配元素复制一份</p>
+ <p>===clone()：不仅复制，还连元素定义的消息响应一起复制</p>
+ 
+ <hr />
+</div>
+
+<!-- ################## lesson 2 ########### -->
+<!-- ########################### end jquery ######## <p></p> ######## -->
+<!-- 
+<div id="lessonX">
+	<h3>Lesson X</h3>
+	<p></p>
+	<script type="text/javascript">
+		jquery2012("lesson2");		
+	</script>
+	<hr />
+</div>
+-->
+</body>
+
+</html>

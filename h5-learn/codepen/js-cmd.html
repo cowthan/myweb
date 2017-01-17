@@ -1,0 +1,42 @@
+<!doctype html>
+<html class="no-js" lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>code pen</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+			
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/modernizr-2.8.3.min.js"></script>
+        <style> </style>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+        <script>  
+          function   open_exe(shellp,str)  
+          {  
+              a=new   ActiveXObject("wscript.shell");
+              a.run(shellp+"   "+str);  
+          }  
+           
+          function   cq()  
+          {  
+              b=new   ActiveXObject("wscript.shell");  
+              b.run("rundll32.exe")  
+          }  
+          </script>  
+          <button   onclick="open_exe('notepad.exe','c://ltdz1.txt')">打开notepad</button>  
+          <button   onclick="open_exe('winword.exe','c://long.doc')">打开word</button>  
+          <button   onclick="open_exe('ACDSee.exe','c://oaautomatic//images//APY.gif')">打开Acdsee</button>  
+          <button   onclick="cq();">重启</button> 
+    </body>
+</html>

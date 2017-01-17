@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+</head>
+<body>
+	<form action="./story.php?functionCode=headerImgage" method="post"
+		enctype="multipart/form-data">
+		<table width="100%" border="1" cellspacing="0" cellpadding="0">
+			<tr>
+				<td class="left bold" width="100%">
+					<h1>上传图片</h1>
+				</td>
+			</tr>
+			<tr>
+				<td class="left">
+				<label for="img_name">图片名称:</label>
+				<input type="text" name="img_name[]" id="img_name" /> 
+				<input type="file" name="upfile[]" value="选择文件" />
+				<br /> 
+				<label for="img_name">图片名称:</label>
+				<input type="text" name="img_name[]" id="img_name" /> 
+				<input type="file" name="upfile[]" value="选择文件" />
+				<br /> 
+				<label for="img_name">上传文件:</label>
+				<input type="file" name="upfile1" value="选择文件" />
+				<div class="exthr">
+					<input type="submit" name="sub_img" value="上传图片" /> 
+					<input type="reset" name="reset_img" value="取消" />
+				</div></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

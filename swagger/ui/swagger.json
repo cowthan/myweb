@@ -1,0 +1,366 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "API所属项目",
+        "description": "项目简介，API简介",
+        "version": "版本1.0.0"
+    },
+    "host": "chuanyue.iwomedia.cn",
+    "schemes": [
+        "http"
+    ],
+    "basePath": "",
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/v1/user/register": {
+            "post": {
+                "summary": "注册",
+                "description": "注册接口，需要先请求一下验证码接口，接收手机短信，然后才能请求此接口",
+                "parameters": [
+                    {
+                        "userphone": "15011571302",
+                        "in": "formData",
+                        "description": "用户手机号",
+                        "required": true,
+                        "type": "string",
+                        "format": ""
+                    },
+                    {
+                        "userpassword": "123456",
+                        "in": "formData",
+                        "description": "密码，不能低于6位",
+                        "required": true,
+                        "type": "string",
+                        "format": ""
+                    }
+                ],
+                "tags": [
+                    "Account"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of products",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Product"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/user/getcode": {
+            "post": {
+                "summary": "获取验证码",
+                "description": "获取验证码，注意本接口不可以频繁请求，1分钟之内只能请求一次",
+                "parameters": [
+                    {
+                        "userphone": "15011571302",
+                        "in": "formData",
+                        "description": "电话号码",
+                        "required": true,
+                        "type": "string",
+                        "format": ""
+                    }
+                ],
+                "tags": [
+                    "Account"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "告诉你是否请求成功，然后等短信吧",
+                        "schema": {
+                            "type": "object",
+                            "schema": {
+                                "$ref": "#/definitions/CommonJson"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/estimates/time": {
+            "get": {
+                "summary": "Time Estimates",
+                "description": "The Time Estimates endpoint returns ETAs for all products offered at a given location, with the responses expressed as integers in seconds. We recommend that this endpoint be called every minute to provide the most accurate, up-to-date ETAs.",
+                "parameters": [
+                    {
+                        "name": "start_latitude",
+                        "in": "query",
+                        "description": "Latitude component of start location.",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "start_longitude",
+                        "in": "query",
+                        "description": "Longitude component of start location.",
+                        "required": true,
+                        "type": "number",
+                        "format": "double"
+                    },
+                    {
+                        "name": "customer_uuid",
+                        "in": "query",
+                        "type": "string",
+                        "format": "uuid",
+                        "description": "Unique customer identifier to be used for experience customization."
+                    },
+                    {
+                        "name": "product_id",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Unique identifier representing a specific product for a given latitude & longitude."
+                    }
+                ],
+                "tags": [
+                    "Estimates"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of products",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Product"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/me": {
+            "get": {
+                "summary": "User Profile",
+                "description": "The User Profile endpoint returns information about the Uber user that has authorized with the application.",
+                "tags": [
+                    "User"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Profile information for a user",
+                        "schema": {
+                            "$ref": "#/definitions/Profile"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/history": {
+            "get": {
+                "summary": "User Activity",
+                "description": "The User Activity endpoint returns data about a user's lifetime activity with Uber. The response will include pickup locations and times, dropoff locations and times, the distance of past requests, and information about which products were requested.<br><br>The history array in the response will have a maximum length based on the limit parameter. The response value count may exceed limit, therefore subsequent API requests may be necessary.",
+                "parameters": [
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Offset the list of returned results by this amount. Default is zero."
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Number of items to retrieve. Default is 5, maximum is 100."
+                    }
+                ],
+                "tags": [
+                    "User"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "History information for the given user",
+                        "schema": {
+                            "$ref": "#/definitions/Activities"
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Product": {
+            "type": "object",
+            "properties": {
+                "product_id": {
+                    "type": "string",
+                    "description": "Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles."
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Description of product."
+                },
+                "display_name": {
+                    "type": "string",
+                    "description": "Display name of product."
+                },
+                "capacity": {
+                    "type": "string",
+                    "description": "Capacity of product. For example, 4 people."
+                },
+                "image": {
+                    "type": "string",
+                    "description": "Image URL representing the product."
+                }
+            }
+        },
+		"CommonJson": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "int",
+                    "description": "0表示请求成功，可以去result中访问结果，非0表示请求出错，message里是出错信息"
+                },
+                "message": {
+                    "type": "string",
+                    "description": "错误信息"
+                },
+                "result": {
+                    "type": "string",
+                    "description": "可能是[]或者{}"
+                }
+            }
+        },
+        "PriceEstimate": {
+            "type": "object",
+            "properties": {
+                "product_id": {
+                    "type": "string",
+                    "description": "Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles"
+                },
+                "currency_code": {
+                    "type": "string",
+                    "description": "[ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency code."
+                },
+                "display_name": {
+                    "type": "string",
+                    "description": "Display name of product."
+                },
+                "estimate": {
+                    "type": "string",
+                    "description": "Formatted string of estimate in local currency of the start location. Estimate could be a range, a single number (flat rate) or \"Metered\" for TAXI."
+                },
+                "low_estimate": {
+                    "type": "number",
+                    "description": "Lower bound of the estimated price."
+                },
+                "high_estimate": {
+                    "type": "number",
+                    "description": "Upper bound of the estimated price."
+                },
+                "surge_multiplier": {
+                    "type": "number",
+                    "description": "Expected surge multiplier. Surge is active if surge_multiplier is greater than 1. Price estimate already factors in the surge multiplier."
+                }
+            }
+        },
+        "Profile": {
+            "type": "object",
+            "properties": {
+                "first_name": {
+                    "type": "string",
+                    "description": "First name of the Uber user."
+                },
+                "last_name": {
+                    "type": "string",
+                    "description": "Last name of the Uber user."
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email address of the Uber user"
+                },
+                "picture": {
+                    "type": "string",
+                    "description": "Image URL of the Uber user."
+                },
+                "promo_code": {
+                    "type": "string",
+                    "description": "Promo code of the Uber user."
+                }
+            }
+        },
+        "Activity": {
+            "type": "object",
+            "properties": {
+                "uuid": {
+                    "type": "string",
+                    "description": "Unique identifier for the activity"
+                }
+            }
+        },
+        "Activities": {
+            "type": "object",
+            "properties": {
+                "offset": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Position in pagination."
+                },
+                "limit": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Number of items to retrieve (100 max)."
+                },
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Total number of items available."
+                },
+                "history": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Activity"
+                    }
+                }
+            }
+        },
+        "Error": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

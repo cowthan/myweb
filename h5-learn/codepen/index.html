@@ -1,0 +1,111 @@
+<!doctype html>
+<html class="no-js" lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>code pen</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+			
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/modernizr-2.8.3.min.js"></script>
+        <style> </style>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+        <div id="header">
+
+        </div>
+
+        <div id="edit-zone">
+            <div id="container-html">
+                <p>html</p>
+                <textarea id="edit-html" class="input-box">
+<h1 id="tttttt">test</h1>
+                </textarea>
+
+            </div>
+            <div id="container-css">
+                <p>css</p>
+                <textarea id="edit-css" class="input-box">
+#tttttt{
+    color: white;
+    background: blue;
+}
+                </textarea>
+
+            </div>
+            <div id="container-js">
+                <p>js</p>
+                <textarea id="edit-js" class="input-box">
+$('#tttttt').hide(3000).show(3000)
+alert("xxx");
+                </textarea>
+
+            </div>
+            
+        </div>
+
+        <div id="bridge">
+            <h1>运行</h1>
+        </div>
+
+
+        <div id="container-frame">
+            
+        </div>
+        <iframe id="resultfb0a9240f04ec2c179783c9f825601511471028655029" src="http://s.codepen.io/boomerang/fb0a9240f04ec2c179783c9f825601511471028655029/index.html" name="CodePen" allowfullscreen="true" sandbox="allow-scripts allow-pointer-lock allow-same-origin allow-popups allow-modals allow-forms" allowtransparency="true" class="result-iframe">
+            
+
+
+
+        </iframe>
+
+
+        <!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+        <script src="http://libs.baidu.com/jquery/2.0.3/jquery.js"></script>
+        <script>window.jQuery || document.write('<script src="http://libs.baidu.com/jquery/2.0.3/jquery.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            /*(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X','auto');ga('send','pageview');*/
+
+            $(document).ready(function(){
+                $("#bridge").click(function() {
+                    var inputHtml = $("#edit-html");
+                    var inputCss = $("#edit-css");
+                    var inputJs = $("#edit-js");
+                    var container = $("#container-frame");
+                    
+                    var tmpl = "<style>{{css}}</style>{{html}}<script>{{js}}" + "</scr" +"ipt>";
+                    tmpl = tmpl.replace("{{html}}", inputHtml.val());
+                    tmpl = tmpl.replace("{{css}}", inputCss.val());
+                    tmpl = tmpl.replace("{{js}}", inputJs.val());
+
+                       alert(tmpl);
+ 
+                    container.empty();
+                    container.append(tmpl)
+                    //eval(inputJs.val());
+
+                });
+            });
+
+        </script>
+    </body>
+</html>

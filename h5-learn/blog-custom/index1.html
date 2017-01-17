@@ -1,0 +1,341 @@
+<!doctype html>
+<html class="no-js" lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>则不达的网站</title>
+		<meta name="keywords" content="则不达，开源，安卓，android，h5，js，css，php" />
+        <meta name="description" content="编程笔记，demo，练习，开源" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+			
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/modernizr-2.8.3.min.js"></script>
+		
+		<style>
+			* {
+				margin: 0;
+				padding:0;
+			}
+			
+			body{
+				font-size:12px;
+				line-height:1.5;
+				font-style:normal;
+				line-height:1.5em; 
+				font-family:"微软雅黑",sans-serif;
+			}
+			
+			#header{
+				width: 100%;
+				height: 10em;
+				background: #93F;
+			}
+			
+			#header h1{
+				float: left;
+				margin-left: 1em;
+				height: 5em;
+				width: 10em;
+				margin-top: 0;
+				line-height:5em;
+				
+			}
+			
+			#header #navigate{
+				float: left;
+				margin-left: 2em;
+				position: relative;
+				top: 50%;
+				left: 0;
+			}
+			
+			#header #navigate-extra{
+				float: right;
+				margin-right: 2em;
+				position: relative;
+				top: 50%;
+				left: 0;
+			}
+			
+			
+			
+			#header ul{
+				margin-top: -25px;
+			}
+			
+			#header ul li{
+				float: left;
+				width: 80px;
+				margin-left: 5px;
+				background:#444;
+				list-style: none;
+				
+			}
+			
+			#header ul li a{
+				display: block;
+				height: 50px;
+				font-size: 14px;
+				color: #fff;
+				width: 80px;
+				line-height: 50px;
+				text-decoration: none;
+				text-align: center;
+			}
+			
+			
+			/* ========================== */
+			#main2{
+				margin:0 auto;
+				padding: 0;
+				width: 1000px;
+				border: 1px dotted red;
+				min-height: 1000px;
+			}
+			
+			#main2 #sidebar{
+				float: left;
+				width: 28%;
+				margin: 0 0;
+				border: 1px dotted green;
+			}
+			
+			#main2 #sidebar ul{
+				margin-left: 10px;
+				
+			}
+			
+			#main2 #sidebar ul li{
+				width: 80px;
+				list-style: none;
+			}
+			
+			#main2 #sidebar ul li a{
+				font-size: 14px;
+				font-weight: bold;
+				height: 2em;
+				line-height: 2em;
+				text-decoration: none;
+				list-style: none;
+			}
+			
+			.menu-level2{
+				margin-left: 10px;
+			}
+			
+			.menu-level2 li a{
+				font-size: 12px;
+				font-weight:normal;
+				height: 2em;
+				line-height: 2em;
+				text-decoration: none;
+				list-style: none;
+			}
+			
+			#main2 #content{
+				float: right;
+				width: 70%;
+				margin-left: 10px;
+				border: 1px dotted blue;
+			}
+			
+			#main2 #content #article{
+				float: left;
+				width: 80%;
+			}
+			
+			#main2 #content #menu{
+				float: right;
+				width: 18%;
+				margin-left: 10px;
+				border: 1px dotted blue;
+			}
+			
+			
+			
+			#footer{
+				clear: both;
+			}
+			
+		</style>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+		<div id="header">
+			<h1>则不达的网站</h1>
+			<div id="navigate">
+				<ul>
+					<li><a href="#item1" class="current">首页</a></li>
+					<li><a href="#item2">安卓</a></li>
+					<li><a href="#item3">H5</a></li>
+					<li><a href="#item4">PHP</a></li>
+					<li><a href="#item5">Java</a></li>
+					<li><a href="#item5">iOS</a></li>
+				</ul>
+			</div>
+			<div id="navigate-extra">
+				<ul>
+					<li><a href="#item1" class="current">Github</a></li>
+					<li><a href="#item2">CSDN</a></li>
+					<li><a href="#item3">登录</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		
+		<div id="main2">
+			<div id="sidebar">
+				<ul>
+					<li><a href="#item1" class="current">Html</a></li>
+					<li><a href="#item2">CSS入门</a></li>
+						<ul class="menu-level2">
+							<li> <a href="">文章排版</a> </li>
+							<li> <a href="">图片排版</a> </li>
+							<li> <a href="">边框</a> </li>
+							<li> <a href="">颜色</a> </li>
+							<li> <a href="">背景</a> </li>
+						</ul>
+					<li><a href="#item3">CSS布局</a></li>
+					<li><a href="#item4">CSS动画</a></li>
+					<li><a href="#item5">JS入门</a></li>
+				</ul>
+			</div>
+			
+			<div id="content">
+				
+				<div id="article">
+					<p>
+					对象管理：创建和回收
+=========================
+
+> 考虑用静态工厂方法代替构造器，见1
+除了构造器，此方法也应该在程序员的工具箱里占一席之地
+
+> 创建对象需要传入很多参数时，考虑Builder模式，见2
+
+
+* 目录
+	* 1 静态工厂
+		* 1.1 套路
+		* 1.2 服务提供者框架
+	* 2 Builder模式：创建对象参数较多时用
+		* 2.1 简单模式
+		* 2.2 Builder接口
+	* 3 单例模式
+	* 4 工厂模式：对象成体系，横向分为产品族，纵向分为产品等级
+		* 简单工厂模式
+		* 抽象工厂：单工厂
+		* 抽象工厂：多工厂
+		* Builder + 抽象工厂
+	* 5 对象池
+		* 创建对象是个复杂的过程，并且又要重复创建时
+	* 6 Flyweight享元模式
+		* 对象数量太多，且可以划分为可变属性和不可变属性部分，可变部分可以由外部传入
+	* 7 四种引用
+	* 8 垃圾回收
+	* 9 备忘录模式
+	* 10 原型模式
+	* 11 clone
+	* 12 序列化
+	* 13 对象缓存
+		* 怎么存的问题
+		* 怎么删的问题
+
+	
+	
+
+###1 静态工厂
+
+####1.1 套路
+
+```java
+public static class Boolean{
+		
+	//预定义的两个对象，某种意义上算是缓存，使用时可以省去创建对象的过程
+	public static final Boolean True = new Boolean(true);
+	public static final Boolean False = new Boolean(false);
+	
+	//静态工厂方法
+	public static Boolean valueOf(boolean b){
+		return new Boolean(b); //b ? True : False;
+	}
+
+	private boolean v;
+	
+	private Boolean(boolean b){
+		v = b;
+	}
+	
+}
+```
+
+* 静态工厂方法的好处是：
+    * `优势1`：方法有名字，构造器没有，如BigInteger.probablePrime方法，这就是静态工厂，表示BitInteger(int, int, Random)返回的很可能是素数
+    * 对于多种参数形式的构造器，可以各自对应一个静态工厂，并给不同名字，还是参考probablePrime
+    * `优势2`：可以预先构建对象，如Boolean.TRUE和FALSE，类似Flyweight模式
+	* 可以管理对象个数，如单例模式，也可以仿枚举，业务逻辑上的相等的值，只给一个对象
+	* `优势3`：可以返回任意子类型的对象，返回的父类或者接口引用，具体实现类甚至可以对外隐藏，参考Java Collections Framework中集合接口的32个便利实现
+	* （1）Collections里有unmodified, empty, checked, synchronized各8个方法，对应8种不同的集合类型
+	* 这8种集合类型就是：Collection, List, Map, SortedMap, NavigableMap, Set, SortedSet, NavigableSet，注意这是接口类型，对外的
+	* 返回的实际类型是什么呢，都是以private static class的形式实现的，并未对外公开，所以可以jdk随时修改，提升性能或修改实现
+	* （2）EnumSet：其静态工厂方法会根据底层枚举类型大小，返回RegalarEnumSet对象或者JumboEnumSet对象，而且这对外部用户是隐藏的
+	* （3）这里又能引出服务器提供者的概念
+	* `优势4`：简化Map<String, String> m = new HashMap<String, String>()这种繁琐的调用
+					</p>
+				</div>
+				
+				<div id="menu">
+					<ul>
+						<li><a href="#item1" class="current">1F 男装</a></li>
+						<li><a href="#item2">2F 女装</a></li>
+						<li><a href="#item3">3F 美妆</a></li>
+						<li><a href="#item4">4F 数码</a></li>
+						<li><a href="#item5">5F 母婴</a></li>
+					</ul>
+				</div>
+				
+			</div>
+		
+			<div id="footer">
+			
+			</div>
+		</div>
+		
+		
+        
+		
+		
+		
+
+		
+		
+		<!-- ============================================= -->
+        <script src="http://libs.baidu.com/jquery/2.0.3/jquery.js"></script>
+        <script>window.jQuery || document.write('<script src="http://libs.baidu.com/jquery/2.0.3/jquery.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+		
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            
+        </script>
+		
+		<script>
+            $(document).ready(function(){
+				
+						
+			});
+			
+			
+			
+        </script>
+    </body>
+</html>
