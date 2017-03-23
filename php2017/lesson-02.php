@@ -71,16 +71,18 @@ CCToolkit::out("4、变量的作用域范围和生命周期");
 CCToolkit::out("5、递归");
 
 CCToolkit::out("6、函数指针");
-// 	switch ($from)
-// 	{
-// 		case "Nanjing":
-// 			$function_will_be_used = "func1";//函数指针赋值
-// 			break;
-// 		case "Beijing":
-// 			$function_will_be_used = "func2";
-// 			break;
-// 	}
-// 	$function_will_be_used($URL); //调用函数指针
+/*
+ 	switch ($from)
+ 	{
+ 		case "Nanjing":
+ 			$function_will_be_used = "func1";//函数指针赋值
+ 			break;
+ 		case "Beijing":
+ 			$function_will_be_used = "func2";
+ 			break;
+ 	}
+ 	$function_will_be_used($URL); //调用函数指针
+*/
 
 CCToolkit::out("7、关于函数的函数");
 /*

@@ -6,20 +6,23 @@
 	<meta charset="utf-8" />
 </head>
 <body>
-
 <?php
+
+
+
 echo phpversion();
 function customError($errno, $errstr, $errfile, $errline)
 {
-    echo "<br/>----------------<br/><b>自定义错误处理: </b> [$errno] $errstr<br />";
+	echo "<p style=\"border:1px solid red;color:red;\">";
+    echo "----------------<b>自定义错误处理: </b><br /> [$errno] $errstr<br />";
     echo " Error on line $errline in $errfile<br />";
-    echo "Ending Script";
-    echo "<br/>----------------<br/>";
+    echo "----------------<br/>";
+	echo "</p>";
     //die();
 }
 
 set_error_handler("customError");
-//trigger_error("自定义错误2：应该被自定义的错误处理器捕捉到。。。");
+trigger_error("自定义错误2：应该被自定义的错误处理器捕捉到。。。");
 
 
 try {
@@ -27,7 +30,6 @@ try {
 } catch (Exception $e) {
     echo $e->getMessage();
 }
-echo "fuck over";
 
 function echoLine($msg){
 	echo $msg . "<br />";
@@ -61,51 +63,469 @@ $a = 123;
 $arr = array(1,2,3,'4');
 
 echo "<br/>=====echo输出====<br/>";
+echo "echo \$aa;  //echo只认识string" . "<br/>";
 echo $a . "<br/>";    //123
 echo $arr . "<br/>";  //Notice: Array to string conversion，输出--Array
 
 echo "<br/>=====print输出====<br/>";
+echo "print \$aa;  //print只认识string" . "<br/>";
 print $a . "<br/>";
 print($arr . "<br/>");
 
 echo "<br/>=====printf输出====<br/>";
-printf('变量%s<br/>', $a);
+echo "printf(\"\$aa = %s\", \$aa);  //printf格式化输出" . "<br/>";
+printf('$a = %s<br/>', $a);
 printf('第一个元素：%s<br/>', $arr[0]);
+
+
+class A_ClassName{
+	public $a = "23234";
+
+	function s(){}
+}
 
 echo "<br/>=====print_r输出====<br/>";
 print_r($a);
 echo "<br/>";
 print_r($arr);
+echo "<br/>";
+print_r(new A_ClassName());
 
+
+echo "<br/>";
 echo "<br/>=====var_dump输出====<br/>";
 var_dump($a);
-var_dump($arr);
-class A{
-	public $a = "23234";
+echo "<br/>";
 
-	function s(){}
-}
-var_dump(new A());
+var_dump($arr);
+echo "<br/>";
+
+var_dump(new A_ClassName());
 echo "<br/>";
 
 CCToolkit::out("4、错误抑制");
+/*
+
+默认错误处理：
+ini_set("display_errors", "off");  //on开启，off关闭 --- 默认是on
+error_reporting(E_ALL | E_STRICT);
+//对应的Php.ini里的display_errors = On
+
+并且这个设置只会影响后面的代码
+
+on时，如果有错误，输出如下：
+Notice: Array to string conversion in F:\tools\xampp\htdocs\myweb\php2017\lesson-01.php on line 68
+
+关于报错级别：
+1 E_ERROR 致命的运行错误。错误无法恢复，暂停执行脚本。
+2 E_WARNING 运行时警告(非致命性错误)。非致命的运行错误，脚本执行不会停止。
+4 E_PARSE 编译时解析错误。解析错误只由分析器产生。
+8 E_NOTICE 运行时提醒(这些经常是你代码中的bug引起的，也可能是有意的行为造成的。)
+16 E_CORE_ERROR PHP启动时初始化过程中的致命错误。
+32 E_CORE_WARNING PHP启动时初始化过程中的警告(非致命性错)。
+64 E_COMPILE_ERROR 编译时致命性错。这就像由Zend脚本引擎生成了一个E_ERROR。
+128 E_COMPILE_WARNING 编译时警告(非致命性错)。这就像由Zend脚本引擎生成了一个E_WARNING警告。
+256 E_USER_ERROR 用户自定义的错误消息。这就像由使用PHP函数trigger_error（程序员设置E_ERROR）
+512 E_USER_WARNING 用户自定义的警告消息。这就像由使用PHP函数trigger_error（程序员设定的一个E_WARNING警告）
+1024 E_USER_NOTICE 用户自定义的提醒消息。这就像一个由使用PHP函数trigger_error（程序员一个E_NOTICE集）
+2048 E_STRICT 编码标准化警告。允许PHP建议如何修改代码以确保最佳的互操作性向前兼容性。
+4096 E_RECOVERABLE_ERROR 开捕致命错误。这就像一个E_ERROR，但可以通过用户定义的处理捕获（又见set_error_handler（））
+8191 E_ALL 所有的错误和警告(不包括 E_STRICT) (E_STRICT will be part of E_ALL as of PHP 6.0)
+
+//禁用错误报告
+error_reporting(0);
+
+//报告运行时错误
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
+//报告所有错误
+error_reporting(E_ALL);
+
+
+自定义错误报告：
+- 不受ini_set控制
+- 会绕过标准 PHP 错误处理程序，同时如果必要，用户定义错误程序通过 die() 终止脚本
+- 也可以把错误存到文件里，不输出到页面
+function customError($errno, $errstr, $errfile, $errline)
+{
+	echo "<p style=\"border:1px solid red;color:red;\">";
+    echo "----------------<b>自定义错误处理: </b><br /> [$errno] $errstr<br />";
+    echo " Error on line $errline in $errfile<br />";
+    echo "----------------<br/>";
+	echo "</p>";
+    //die();
+}
+
+set_error_handler("customError");
+//trigger_error("自定义错误2：应该被自定义的错误处理器捕捉到。。。");
+
+
+ */
+
+CCToolkit::out("5、命名空间");
+echo "命名空间生效版本：(PHP 5 >= 5.3.0, PHP 7)， 默认命名空间： __NAMESPACE__ = " . __NAMESPACE__ . "<br/>";
+
+/*
+
+
+专业术语：
+- 非限定名称：Unqualified name， 如Foo， 是个相对路径，会在当前ns里寻找
+- 限定名：Qualified name，如Foo\Bar，也是个相对路径，会在当前ns里寻找
+- 完全限定名： Fully，如\Foo\Bar， 注意namespace\Foo也是一个完全限定名（namespace关键字在这里代表当前命名空间的全名）
+
+
+```
+<?php
+namespace my\name; // 参考 "定义命名空间" 小节
+
+class MyClass {}
+function myfunction() {}
+const MYCONST = 1;
+
+$a = new MyClass;
+$c = new \my\name\MyClass; // 参考 "全局空间" 小节
+
+$a = strlen('hi'); // 参考 "使用命名空间：后备全局函数/常量" 小节
+
+$d = namespace\MYCONST; // 参考 "namespace操作符和__NAMESPACE__常量” 小节
+
+$d = __NAMESPACE__ . '\MYCONST';
+echo constant($d); // 参考 "命名空间和动态语言特征" 小节
+?>
+```
+
+都谁可以放在命名空间里：
+- 类（包括抽象类和traits）、接口、函数和常量
+
+基本使用：
+```
+<?php
+namespace MyNamespace;
+
+const CONNECT_OK = 1;
+class Connection { ...  }
+function connect() { ... }
+
+define('MESSAGE', 'Hello world!'); ///这个定义在了全局空间里！！！！
+define('MyNamespace\HELLO', 'Hello world!');  ///这个定义在了MyNamespace里！！！！
+define(__NAMESPACE__ . '\GOODBYE', 'Goodbye cruel world!'); ///这个定义在了MyNamespace里！！！！
+
+
+
+?>
+
+<?php
+    namespace NS;
+
+    define(__NAMESPACE__ .'\foo','111');
+    define('foo','222');
+
+    echo foo;  // 111 --- 访问的是当前namespace里的foo
+    echo \foo;  // 222 --- 访问的是全局namespace的foo，全局namespace就是\
+    echo \NS\foo  // 111 --- 显式指定了，访问的是\NS
+    echo NS\foo  // fatal error. assumes \NS\NS\foo  -- 不加斜杠，就会以当前namespace为根，即\NS，然后在里面找\NS\NS\foo
+?>
+
+-------------------命名空间必须是第一条语句，包括html在内
+<html>
+<?php
+namespace MyProject; // 致命错误 -　命名空间必须是程序脚本的第一条语句
+?>
+```
+
+
+子命名空间
+```
+<?php
+namespace MyProject\Sub\Level;
+
+const CONNECT_OK = 1;
+class Connection {  ...  }
+function connect() {  ...  }
+
+?>
+
+常量 MyProject\Sub\Level\CONNECT_OK
+类   MyProject\Sub\Level\Connection
+函数 MyProject\Sub\Level\connect
+```
+
+同一个文件声明多个namespace
+```
+<?php
+declare(encoding='UTF-8');  //除了开始的declare语句外，命名空间的括号外不得有任何PHP代码。
+namespace MyProject {
+
+	const CONNECT_OK = 1;
+	class Connection {  ...  }
+	function connect() {  ...   }
+}
+
+namespace AnotherProject {
+
+	const CONNECT_OK = 1;
+	class Connection {  ...  }
+	function connect() {  ...   }
+}
+
+namespace { // global code
+	session_start();
+	$a = MyProject\connect();
+	echo MyProject\Connection::start();
+}
+?>
+
+注意，namespace后不带名字的，其实就是全局空间
+- 全局空间的声明：namespace { }
+- 全局空间的使用：
+	- 如果是在全局空间里，new Klass()，表示Klass就是全局空间的
+	- 如果是在其他空间里，new \Klass()，表示去全局空间找Klass
+```
+
+命名空间的使用：
+- 其实可以和文件路径做一个类比
+- 注意，任何代码都有个当前目录（也就是当前namespace）
+	- new Foo()：Foo在这里是一个相对路径，则会寻找currentNamespace\Foo
+	- new subDir\Foo()：这也是个相对路径，会寻找currentNamespace\subDir\Foo
+	- new \home\foo\Foo()：这是个绝对路径
+	- 全局空间就代表根目录
+	- 所有namespace，都是声明在当前namespace下，大多数情况下，就是全局空间
+
+在任意命名空间里访问全局函数：
+```
+<?php
+namespace Foo;
+
+function strlen() {}
+const INI_ALL = 3;
+class Exception {}
+
+$a = \strlen('hi'); // 调用全局函数strlen
+$b = \INI_ALL; // 访问全局常量 INI_ALL
+$c = new \Exception('error'); // 实例化全局类 Exception
+?>
+```
+
+
+php的动态语言特性和namespace的关系：
+
+先来一个不用namespace的例子，很好理解：
+```
+<?php
+class classname
+{
+    function __construct()
+    {
+        echo __METHOD__,"\n";
+    }
+}
+function funcname()
+{
+    echo __FUNCTION__,"\n";
+}
+const constname = "global";
+
+$a = 'classname';
+$obj = new $a; // prints classname::__construct
+$b = 'funcname';
+$b(); // prints funcname
+echo constant('constname'), "\n"; // prints global
+?>
+```
+
+如果在某一个namespace里使用这段代码:
+<?php
+namespace namespacename;
+class classname
+{
+    function __construct()
+    {
+        echo __METHOD__,"\n";
+    }
+}
+function funcname()
+{
+    echo __FUNCTION__,"\n";
+}
+const constname = "namespaced";
+
+include 'example1.php';
+
+$a = 'classname';
+$obj = new $a; // prints classname::__construct
+$b = 'funcname';
+$b(); // prints funcname
+echo constant('constname'), "\n"; // prints global
+
+// note that if using double quotes, "\\namespacename\\classname" must be used
+$a = '\namespacename\classname';
+$obj = new $a; // prints namespacename\classname::__construct
+$a = 'namespacename\classname';
+$obj = new $a; // also prints namespacename\classname::__construct
+$b = 'namespacename\funcname';
+$b(); // prints namespacename\funcname
+$b = '\namespacename\funcname';
+$b(); // also prints namespacename\funcname
+echo constant('\namespacename\constname'), "\n"; // prints namespaced
+echo constant('namespacename\constname'), "\n"; // also prints namespaced
+?>
+
+动态特征的其他用法：
+```
+<?php
+class myClass
+{
+    public static function myMethod()
+    {
+      return "You did it!\n";
+    }
+}
+
+$foo = "myClass";
+$bar = "myMethod";
+
+echo $foo::$bar(); // prints "You did it!";
+?>
+
+```
+
+
+在代码里写太多\太难看了，就像java代码你不会在代码里写一堆包名，而是用import，在php里，有use关键字，
+而且use还可以指定别名
+- 注意，use是将别的空间里的类，函数，常量引入到当前命名空间
+- use My\Full; 这里是从全局空间开始走，而不是从当前空间开始走
+	- 前导的反斜杠是不必要的也不推荐的，因为导入的名称必须是完全限定的，不会根据当前的命名空间作相对解析
+- 导入操作是在编译执行的，而动态机制是运行时的，所以动态代码（类名，函数名，常量名）不会受use影响！！
+- use不会影响include里的文件，因为use是基于file的--per file basis
+- use只能用于全局位置，不能位于类，函数内
+- 不能给全局空间起别名，use \ as test; 不会生效
+
+```
+<?php
+namespace foo;
+use My\Full\Classname as Another;
+
+// 下面的例子与 use My\Full\NSname as NSname 相同
+use My\Full\NSname;
+
+// 导入一个全局类
+use ArrayObject;
+
+// importing a function (PHP 5.6+)
+use function My\Full\functionName;
+
+// aliasing a function (PHP 5.6+)
+use function My\Full\functionName as func;
+
+// importing a constant (PHP 5.6+)
+use const My\Full\CONSTANT;
+
+$obj = new namespace\Another; // 实例化 foo\Another 对象
+$obj = new Another; // 实例化 My\Full\Classname　对象
+NSname\subns\func(); // 调用函数 My\Full\NSname\subns\func
+$a = new ArrayObject(array(1)); // 实例化 ArrayObject 对象
+// 如果不使用 "use \ArrayObject" ，则实例化一个 foo\ArrayObject 对象
+func(); // calls function My\Full\functionName
+echo CONSTANT; // echoes the value of My\Full\CONSTANT
+?>
+
+一个use，引入多个：
+<?php
+use My\Full\Classname as Another, My\Full\NSname;
+
+$obj = new Another; // 实例化 My\Full\Classname 对象
+NSname\subns\func(); // 调用函数 My\Full\NSname\subns\func
+?>
+
+<?php
+use My\Full\Classname as Another, My\Full\NSname;
+
+$obj = new Another; // 实例化一个 My\Full\Classname 对象
+$a = 'Another';
+$obj = new $a;      // 实际化一个 Another 对象
+?>
+
+<?php
+use My\Full\Classname as Another, My\Full\NSname;
+
+$obj = new Another; // instantiates object of class My\Full\Classname
+$obj = new \Another; // instantiates object of class Another
+$obj = new Another\thing; // instantiates object of class My\Full\Classname\thing  --- 内部类？？
+$obj = new \Another\thing; // instantiates object of class Another\thing
+?>
+```
+
+在namespace里include，则被include的文件里的代码都位于namespace里了！！
+```
+<?php
+//test.php
+namespace test {
+  include 'test1.inc';
+  echo '-',__NAMESPACE__,'-<br />';
+}
+?>
+
+<?php
+//test1.inc
+  echo '-',__NAMESPACE__,'-<br />';
+?>
+
+Results of test.php:
+
+--
+-test-
+```
+
+namespace优先级
+- new Klass()，总是只在当前ns里寻找Klass，所以全局空间的class必须使用全限定名
+- 函数和常量，总是先在当前ns里找，找不到，则跑到全局空间里找（或者是跑到上层空间里找？？）
+```
+<?php
+namespace A\B\C;
+
+const E_ERROR = 45;
+function strlen($str)
+{
+    return \strlen($str) - 1;
+}
+
+echo E_ERROR, "\n"; // 输出 "45"
+echo INI_ALL, "\n"; // 输出 "7" - 使用全局常量 INI_ALL
+
+echo strlen('hi'), "\n"; // 输出 "1"
+if (is_array('hi')) { // 输出 "is not array"
+    echo "is array\n";
+} else {
+    echo "is not array\n";
+}
+?>
+```
+
+
+ */
 
 CCToolkit::out("5、文件包含");
-/**
- * include：参数可以是变量，被包含的文件可以返回一个值
- * require：参数不能是变量，因为这个是在编译时替换，一般用于库函数等
- * 
- * include_once
- * require_once
- * 
- * get_included_files()和get_required_files()能知道当前文件包含了哪些文件
- * 
- * 自动加载类：调用全局方法__autoload($类名)
- *  function __autoload($class){
- *  	//前提是你的class都统一命名，统一存放
- *  	//这样当你$obj = new User()时，如果当前没有包含User类，则去包含User.class.php
- *  	include($class . ".class.php");
- *  }
+/*
+
+include：
+- 运行时包含，参数可以是变量，被包含的文件可以返回一个值
+- 只生成警告（E_WARNING），并且脚本会继续
+
+require：
+- 编译时包含，参数不能是变量，因为这个是在编译时替换，一般用于库函数等
+- 会生成致命错误（E_COMPILE_ERROR）并停止脚本
+
+include_once
+require_once
+
+get_included_files()和get_required_files()能知道当前文件包含了哪些文件
+
+自动加载类：调用全局方法__autoload($类名)
+function __autoload($class){
+	//前提是你的class都统一命名，统一存放
+	//这样当你$obj = new User()时，如果当前没有包含User类，则去包含User.class.php
+	include($class . ".class.php");
+}
 
 注意：被包含的文件不应该以?>结尾，应该省略，具体原因不详，书上这样说：
 类定义文件不应该以?>结尾，因为在组合页之前，他们经常自动加载或包含在一个头文件里，并且?>和EOF之间
@@ -113,8 +533,191 @@ CCToolkit::out("5、文件包含");
 函数发送HTTP头到浏览器时，?>可能是导致“输出已开始（output already started）”错误的主要原因，并且它是
 一个不易察觉的致命陷阱
 
+require_once('./toolkit.php');
+
+关于autoload：
+这是php提供的自动寻找class的机制，要注意class文件名的拼写和路径的指定
+
+下面是一个不太好的例子：
+function __autoload($class_name) {
+	$path = str_replace('_', '/', $class_name);
+	require_once $path . '.php';
+}
+// 这里会自动加载Http/File/Interface.php 文件
+$a = new Http_File_Interface();
+当你访问Http_File_Interface这个类时，会去Http/File/Http_File_Interface.php里找类Http_File_Interface
+缺点很明显了，类名必须和路径（目录层级）绑定
+
+
+例子2：
+$map = array(
+	'Http_File_Interface' => 'C:/PHP/HTTP/FILE/Interface.php'
+);
+function __autoload($class_name) {
+	if (isset($map[$class_name])) {
+		require_once $map[$class_name];
+	}
+}
+// 这里会自动加载C:/PHP/HTTP/FILE/Interface.php 文件
+$a = new Http_File_Interface();
+缺点就是你得维护一个map，或者维护一个json文件，总之要手动记住类名和路径的映射
+
+版本问题：
+- （PHP 5 >= 5.1.2, PHP 7）spl_autoload_register() 提供了一种更加灵活的方式来实现类的自动加载。因此，不再建议使用 __autoload() 函数，在以后的版本中它可能被弃用。
+- 在 5.3.0 版之前，__autoload 函数抛出的异常不能被 catch 语句块捕获并会导致一个致命错误
+- 5.3.0+ 之后，__autoload 函数抛出的异常可以被 catch 语句块捕获，但需要遵循一个条件。如果抛出的是一个自定义异常，那么必须存在相应的自定义异常类。__autoload 函数可以递归的自动加载自定义异常类
+- 自动加载不可用于 PHP 的 CLI 交互模式。
+
+关于spl_autoload_register：
+- 如果有多个autoload函数（比如来自你引用的别的框架），但php本身只允许一个autoload函数存在
+- 这时就需要一个autoload函数的堆栈，让所有autoload函数都生效
+- 所以有了spl系列
+
+spl_autoload：
+- 是_autoload()的默认实现，它会去include_path中寻找$class_name(.php/.inc)
+- spl_autoload实现自动加载
+```
+http.php
+<?php
+class http
+{
+	public function callname(){
+		echo "this is http";
+	}
+}
+
+test.php
+<?php
+set_include_path("/home/yejianfeng/handcode/"); //这里需要将路径放入include
+spl_autoload("http"); //寻找/home/yejianfeng/handcode/http.php
+$a = new http();
+$a->callname();
+```
+
+spl_autoload_register的使用：
+```
+http.php
+<?php
+class http
+{
+	public function callname(){
+		echo "this is http";
+	}
+}
+
+test.php
+<?php
+spl_autoload_register(function($class){
+	if($class == 'http'){
+		require_once("/home/yejianfeng/handcode/http.php");
+	}
+});
+
+$a = new http();
+$a->callname();
+```
+
+
+spl_autoload_call：
+- 调用通过spl_autoload_register注册的函数
+- spl_auto_call('http2')，我们可以自己传入一个类名（其实不一定是类名）
+看下面的例子，http.php和http2.php都定义了http类，如果直接new http()，会找到http.php，但是我们想用http2.php，
+这时就可以通过spl_autoload_call显式的加载
+```
+http.php
+<?php
+class http
+{
+	public function callname(){
+		echo "this is http";
+	}
+}
+
+http2.php
+<?php
+class http
+{
+	public function callname(){
+		echo "this is http2";
+	}
+}
+
+test.php
+<?php
+spl_autoload_register(function($class){
+	if($class == 'http'){
+		require_once("/home/yejianfeng/handcode/http.php");
+	}
+	if($class == 'http2'){
+		require_once("/home/yejianfeng/handcode/http2.php");
+	}
+});
+spl_auto_call('http2');
+$a = new http();
+$a->callname(); //这个时候会输出"this is http2"
+```
+
+spl_autoload_register的高级用法：
+- 5.3有效
+- 参数2：throw，boolean类型， 此参数设置了 autoload_function 无法成功注册时， spl_autoload_register()是否抛出异常。
+	- 如果找不到类，会抛出fatal error:Fatal error: Class 'Foobar\InexistentClass' not found in ...
+- 参数3：prepend 如果是 true，spl_autoload_register() 会添加函数到队列之首，而不是队列尾部
+
+看下面的例子，模拟了找不到类的情况
+```
+<?php
+
+namespace Foobar;
+
+class Foo {
+    static public function test($name) {
+        print '[['. $name .']]';
+    }
+}
+
+spl_autoload_register(__NAMESPACE__ .'\Foo::test'); // 自 PHP 5.3.0 起
+
+new InexistentClass;
+
+?>
+
+输出：
+[[Foobar\InexistentClass]]
+Fatal error: Class 'Foobar\InexistentClass' not found in ...
+```
+
+
+
+异常处理：
+```
+<?php
+
+namespace Foo;
+
+try {
+    // Something awful here
+    // That will throw a new exception from SPL
+}
+catch (Exception as $ex) {
+    // We will never get here
+    // This is because we are catchin Foo\Exception
+}
+
+
+namespace Foo;
+
+try {
+    // something awful here
+    // That will throw a new exception from SPL
+}
+catch (\Exception as $ex) {
+    // Now we can get here at last
+}
+?>
+```
 
  */
+
 
 
 CCToolkit::out("6、退出程序：die(reason)");
@@ -238,7 +841,8 @@ CCToolkit::out("4、类型相关函数");
 //empty($variable)：未定义，未赋值，0，NULL，""都返回true
 
 CCToolkit::out("5、常量");
-/*define函数定义常量，访问时不用$符号
+/*
+ 	define函数定义常量，访问时不用$符号
  	define("CCNAME", "cowthan", true);  参数3：常量名是否大小写敏感，默认true
  	if(defined("CCNAME"))
  	{

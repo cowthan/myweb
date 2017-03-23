@@ -120,8 +120,8 @@ body{
 }
 
 #container-html{
-    display: inline-block;
-    width: 33%;
+    
+    
     height: 300px;
     background: #257;
 
@@ -130,23 +130,23 @@ body{
 
 
 #container-css{
-    display: inline-block;
-    width: 33%;
+    
+    
     height: 300px;
     background: #257;
 
 }
 #container-js{
-    display: inline-block;
-    width: 32%;
+    
+    
     height: 300px;
     background: #580;
 
 }
 #container-frame{
-    display: block;
-    width: 100%;
-    margin: 0 auto;
+    
+    
+    
     height: 800px;
     background: #863;
 
