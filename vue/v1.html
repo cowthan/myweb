@@ -1,0 +1,623 @@
+<!doctype html>
+<html class="no-js" lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>vue入门</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+			
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/modernizr-2.8.3.min.js"></script>
+
+        <style>
+        body{
+          margin-left: 100px;
+          margin-right:100px; 
+          margin-top: 50px;
+          margin-bottom: 50px;
+          padding: 20px;
+          border: 1px solid green;
+          font-family:Microsoft yahei;
+        }
+
+      .title1{
+          margin-top: 40px;
+          padding: 8px;
+          background-color: #e2e2e2;
+          font-weight: bold;
+        }
+
+        .title2{
+          border: 1px solid red;
+          padding: 8px;
+          margin-top: 20px;
+        }
+
+        .info{
+              background-color: #f3f7f0;
+              padding: 10px;
+              margin: 10px;
+              font-size: 13px;
+              line-height: 2em;
+        }
+
+         .bg{
+          background: #444;
+          color: #eee;
+        }
+
+        .active {
+          width: 100px;
+          height: 100px;
+          background: green;
+        }
+        .text-danger {
+          width: 150px;
+          height: 150px;
+          background: red;
+        }
+        </style>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <h2>Vue边看边练</h2>
+
+        <div id="app">
+
+          <p class="title1" >
+            1 文本显示: Vue.js 的核心是一个允许你采用简洁的模板语法来声明式的将数据渲染进 DOM 的系统
+          </p>
+          <p>{{ message }}</p>
+
+          <p class="title1" >2 html显示</p>
+          <p v-html="html_message"></p>
+
+          <p class="title1" >3 v-bind绑定属性</p>
+         <br/> 
+          <br/><br/><span class="title2">-------------绑定class</span><br/><br/>
+          <p>
+            <label for="r1">修改颜色</label><input type="checkbox" v-model="class1" id="r1">
+            <br>
+            <div v-bind:class="{'bg': class1} ">
+              directiva v-bind:class
+            </div>
+          </p>
+
+        <br/><br/><span class="title2">-------------绑定class  2</span><br/><br/>
+          <div v-bind:class="{ active: isActive }"></div>
+
+
+        <br/><br/><span class="title2">-------------绑定class  3</span><br/><br/>
+         <div class="static"  v-bind:class="{ active: isActive, 'text-danger': hasError }">
+        </div>
+
+        <br/><br/><span class="title2">-------------绑定class  4</span><br/><br/>
+          <div v-bind:class="classObject"></div>
+
+
+          <br/><br/><span class="title2">-------------绑定class  5</span><br/><br/>
+         <div v-bind:class="[activeClass, errorClass]"></div>
+
+          <br/><br/><span class="title2">-------------绑定class  6</span><br/><br/>
+        <div v-bind:class="[errorClass, isActive ? activeClass : '']"></div>
+
+      <br/><br/><span class="title2">-------------绑定class  7   直接绑定style </span><br/><br/>
+      <p class="info">注意：当 v-bind:style 使用需要特定前缀的 CSS 属性时，如 transform ，Vue.js 会自动侦测并添加相应的前缀。</p>
+       <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">则不达五一的vue冲刺</div>
+      <div v-bind:style="styleObject">则不达五一的vue冲刺</div>
+      <div v-bind:style="[baseStyles, overridingStyles]">则不达五一的vue冲刺</div>
+
+
+           <br/><br/><span class="title2">-------------绑定id</span><br/><br/>
+          <p>
+      
+            <div v-bind:id="'id-' + id">
+              {{'id-' + id}}
+            </div>
+          </p>
+          
+         <br/><br/> <span class="title2">-------------绑定title：鼠标放上会提示</span><br/><br/>
+          <p>
+             <span v-bind:title="message">
+                Hover your mouse over me for a few seconds
+                to see my dynamically bound title!
+              </span>
+          </p>
+          
+         
+
+          <p class="title1" >4 v-model表单和data绑定</p>
+          <p>
+           <p>单个复选框：</p>
+          <input type="checkbox" id="checkbox" v-model="checked">哈哈
+          <label for="checkbox">{{ checked }}</label>
+            
+          <p>多个复选框：</p>
+          <input type="checkbox" value="a" v-model="checkedNames" name="r1" id="a" />足球
+          <input type="checkbox" value="b" v-model="checkedNames" name="r1" id="b" />篮球
+          <input type="checkbox" value="c" v-model="checkedNames" name="r1" id="c" />台球
+          <input type="checkbox" value="d" v-model="checkedNames" name="r1" id="d" />算个球
+          <input type="checkbox" value="e" v-model="checkedNames" name="r1" id="e" />牛个球
+           <br>
+          <span>选择的值为: {{ checkedNames }}</span>
+          </p>
+          <br/>
+
+          <p>
+          {{ form_input }}<br/>
+          输入激活model变化：<input type="input" v-model="form_input" id="r2"/><br /><br />
+          失去焦点才激活model变化：<input v-model.lazy="form_input" placeholder="lazy表示在change事件中同步，而非默认的在input事件中同步..." />
+          <br /><br />总是将输入转为number：<input v-model.number="form_input" type="number" />
+          <br /><br />总是将输入转为trim一下：<input v-model.trim="form_input" type="text" />
+          </p>
+          <br/>
+
+           <p>
+          {{ form_password }}<br/>
+          <input type="password" v-model="form_password"/>
+          </p>
+          <br/>
+
+          <p>
+          {{ form_radio }}<br/>
+         <input type="radio" name="Sex" value="female" v-model="form_radio"/>女
+          <input type="radio" name="Sex" value="male" v-model="form_radio"/>男
+          </p>
+          <br/>
+
+           <p>
+          {{ form_select }}<br/>
+        <select name="cars"  v-model="form_select">
+          <option value="value-volvo">Volvo</option>
+          <option value="value-saab">Saab</option>
+          <option value="value-fiat">Fiat</option>
+          <option value="value-audi" selected="selected">Audi</option>
+        </select>
+          </p>
+          <br/>
+
+           <p>
+          {{ form_textarea }}<br/>
+        <textarea rows="10" cols="30" v-model="form_textarea">
+        The cat was playing in the garden.
+        </textarea>
+          </p>
+          <br/>
+
+           <p class="title1" >5 js表达式支持</p>
+          <p>
+         {{5+5}}<br>
+        {{ ok ? 'YES' : 'NO' }}<br>
+        {{ message2.split('').reverse().join('') }}
+        <div v-bind:id="'list-' + id">{{'list-' + id}}</div>
+          </p>
+
+          <p class="title1" >6 指令</p>
+
+          <span class="title2" >v-if指令：控制元素，根据表达式的值(true 或 false )来决定是否插入元素</span><br/><br/>
+          <input type="checkbox" v-model="seen">看美女<br/><br/>
+          
+          <img src="./img/11.gif" v-if="seen" /><br/><br/>
+
+          <br/><br/><span class="title2" >v-if指令：if  else</span><br/><br/>
+          <div v-if="Math.random() > 0.5">
+            Sorry
+          </div>
+          <div v-else>
+            Not sorry
+          </div>
+
+        <br/><br/><span class="title2" >v-if指令：if else-if else</span><br/><br/>
+          <div v-if="type === 'A'">
+            A
+          </div>
+          <div v-else-if="type === 'B'">
+            B
+          </div>
+          <div v-else-if="type === 'C'">
+            C
+          </div>
+          <div v-else>
+            Not A/B/C
+          </div>
+
+          <br/><br/><span class="title2" >v-for指令：循环</span><br/><br/>
+          <ol>
+          <li v-for="site in sites">
+            {{ site.name }}
+          </li>
+        </ol>
+
+        <br/><br/><span class="title2" >v-for指令：在template里的使用</span><br/><br/>
+         <template v-for="site in sites">
+          <li>{{ site.name }}</li>
+          <li>--------------</li>
+        </template>
+
+        <br/><br/><span class="title2" >v-for指令：迭代对象</span><br/><br/>
+         <ul>
+          <li v-for="(value, key, index) in object">
+           {{ index }}. {{ key }} : {{ value }}
+          </li>
+        </ul>
+
+        <br/><br/><span class="title2" >v-for指令：迭代整数range</span><br/><br/>
+         <ul>
+          <li v-for="n in 10">
+          {{ n }}
+          </li>
+        </ul>
+
+        <br/><br/><span class="title2" >v-if指令：template语法</span><br/><br/>
+          <template v-if="type === 'D'">
+            <h1>床前明月光</h1>
+            <p>疑是地上霜</p>
+          </template>
+
+          <br/><br/><span class="title2" >v-show指令：也是控制元素，但不支持template语法</span><br/><br/>
+          <h1 v-show="type === 'D'">Hello!</h1>
+
+
+          <br/><br/><span class="title2" >v-bind指令：控制属性</span><br/><br/>
+          <p class="info">
+            v-bind缩写：
+            a :href="url"  相当于 a v-bind:href="url"
+          </p>
+           <select name="imgs"  v-model="img2">
+            <option value="11.jpg">jpg</option>
+            <option value="11.gif">gif</option>
+          </select><br/><br/>
+          <img v-bind:src="'./img/' + img2" />
+          
+          <br/><br/><span class="title2" >v-on指令：控制事件响应</span><br/><br/>
+           <p>{{ message3 }}</p>
+          <button v-on:click="reverseMessage">反转字符串</button>
+
+<br/><br/><br/><br/>
+
+           <button v-on:click="counter += 1;">增加 1</button>
+           <p>这个按钮被点击了 {{ counter }} 次。</p>
+
+<br/><br/><br/><br/>
+
+            <button v-on:click="greet">Greet</button>
+            <button v-on:click="say('哈哈哈哈')">Say</button>
+
+<br/><br/><br/><br/>
+
+        <br/><br/><span class="title2" >v-on指令：修饰符</span><br/><br/>
+        <p class="info">
+            v-on缩写：
+            a @click="doSomething"  相当于 a v-on:click="doSomething"
+          </p>
+        <p>form v-on:submit.prevent="onSubmit"----.prevent 修饰符告诉 v-on 指令对于触发的事件调用 event.preventDefault()</p>
+
+         <!-- 阻止单击事件冒泡 -->
+          <a v-on:click.stop="defaultClick">v-on:click.stop</a>
+          <!-- 提交事件不再重载页面 -->
+          <form v-on:submit.prevent="defaultClick">v-on:submit.prevent</form>
+          <!-- 修饰符可以串联  -->
+          <a v-on:click.stop.prevent="defaultClick">v-on:click.stop.prevent</a>
+          <!-- 只有修饰符 -->
+          <form v-on:submit.prevent>v-on:submit.prevent</form>
+          <!-- 添加事件侦听器时使用事件捕获模式 -->
+          <div v-on:click.capture="defaultClick">v-on:click.capture</div>
+          <!-- 只当事件在该元素本身（而不是子元素）触发时触发回调 -->
+          <div v-on:click.self="defaultClick">v-on:click.self</div>
+
+          <!-- click 事件至少触发一次，2.1.4版本新增 -->
+          <a v-on:click.once="defaultClick">v-on:click.once</a>
+          
+
+
+          <br/><br/><span class="title2" >v-on指令：捕捉按键</span><br/><br/>
+          <input v-on:keyup.13="defaultClick" type="text" value="按回车试试" /><br/><br/>
+          <input v-on:keyup.enter="defaultClick" type="text" value="按回车试试" /><br/><br/>
+          <input @keyup.enter="defaultClick" type="text" value="按回车试试" /><br/><br/>
+          <input v-on:keyup.tab="defaultClick" type="text" value="按Tab试试" /><br/><br/>
+          <input v-on:keyup.esc="defaultClick" type="text" value="按Esc试试" /><br/><br/>
+          <input v-on:keyup.space="defaultClick" type="text" value="按空格试试" /><br/><br/>
+          <input v-on:keyup.left="defaultClick" type="text" value="按Left试试" /><br/><br/>
+          <input v-on:keyup.right="defaultClick" type="text" value="按Right试试" /><br/><br/>
+          <input v-on:keyup.up="defaultClick" type="text" value="按Up试试" /><br/><br/>
+          <input v-on:keyup.down="defaultClick" type="text" value="按Down试试" /><br/><br/>
+          <input v-on:keyup.ctrl.67="defaultClick" type="text" value="按ctrl + c试试" /><br/><br/>
+          <input v-on:keyup.alt.67="defaultClick" type="text" value="按alt + c试试" /><br/><br/>
+          <input v-on:keyup.shift.67="defaultClick" type="text" value="按shift + c试试" /><br/><br/>
+          <input v-on:keyup.meta="defaultClick" type="text" value="按meta试试" /><br/><br/>
+
+          <p class="title1" >7 过滤器 Filter</p>
+          {{ message4 | capitalize }}
+          
+           <p class="title1" >8 计算属性</p>
+           <p class="info">我们可以使用 methods 来替代 computed，效果上两个都是一样的，但是 computed 是基于它的依赖缓存，只有相关依赖发生改变时才会重新取值。而使用 methods ，在重新渲染的时候，函数总会重新调用执行。</p>
+         <p>原始字符串: {{ message3 }}</p>
+          <p>计算后反转字符串: {{ reversedMessage }}</p>
+          <p>setter和getter: {{ property }}</p>
+
+
+          <p class="title1" >9  组件</p>
+          <runoob></runoob>
+          <child></child>
+          <c1 titlea="1122-aabb-属性值"></c1>
+          <c1 titlea="1122-aabb-属性值" v-bind:inputmsg="form_input2"></c1>
+          <input type="text" v-model="form_input2" />
+          
+        <br/> <br/>
+          <ordered-list title="优秀游戏列表：" v-bind:list="list" v-on:itemclicked="onListItemClick222"></ordered-list>
+         <br/> <br/>
+
+      <br/> <br/>
+          <ordered-list2 title="优秀游戏列表2：" v-bind:list="list" v-on:itemclicked="onListItemClick222"></ordered-list2>
+         <br/> <br/>
+
+
+
+        </div>
+
+
+<div id="app2">
+        <p class="title1" >10 Router</p>
+         <h1>Hello App!</h1>
+  <p>
+    <!-- 使用 router-link 组件来导航. -->
+    <!-- 通过传入 `to` 属性指定链接. -->
+    <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
+    <router-link to="/foo">Go to Foo</router-link>
+    <router-link to="/bar">Go to Bar</router-link>
+  </p>
+  <!-- 路由出口 -->
+  <!-- 路由匹配到的组件将渲染在这里 -->
+  <router-view></router-view>
+</div>
+ 
+        <script src="http://libs.baidu.com/jquery/2.0.3/jquery.js"></script>
+        <script>window.jQuery || document.write('<script src="http://libs.baidu.com/jquery/2.0.3/jquery.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+        <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+        <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+        
+<script>
+
+////--------------------------------------------------------------------------
+
+// 0. 如果使用模块化机制编程，導入Vue和VueRouter，要调用 Vue.use(VueRouter)
+ 
+// 1. 定义（路由）组件。
+// 可以从其他文件 import 进来
+const Foo = { template: '<div>foo</div>' }
+const Bar = { template: '<div>bar</div>' }
+ 
+// 2. 定义路由
+// 每个路由应该映射一个组件。 其中"component" 可以是
+// 通过 Vue.extend() 创建的组件构造器，
+// 或者，只是一个组件配置对象。
+// 我们晚点再讨论嵌套路由。
+const routes = [
+  { path: '/foo', component: Foo },
+  { path: '/bar', component: Bar }
+]
+ 
+// 3. 创建 router 实例，然后传 `routes` 配置
+// 你还可以传别的配置参数, 不过先这么简单着吧。
+const router = new VueRouter({
+  routes // （缩写）相当于 routes: routes
+})
+ 
+// 4. 创建和挂载根实例。
+// 记得要通过 router 配置参数注入路由，
+// 从而让整个应用都有路由功能
+const app = new Vue({
+  router
+}).$mount('#app2')
+ 
+// 现在，应用已经启动了！
+////--------------------------------------------------------------------------
+
+
+// 全局组件
+Vue.component('runoob', {
+  template: '<h1>自定义组件-全局</h1>'
+});
+
+// 局部组件，还需要在vm里声明
+var runoob2 = {
+  template: '<h1>自定义组件-局部</h1>'
+}
+
+// 给全局组件传属性: <c1 titlea="1122-aabb-属性值"></c1>
+//  prop 是单向绑定的：当父组件的属性变化时，将传导给子组件，但是不会反过来
+Vue.component('c1', {
+    props: ['titlea', 'inputmsg'],
+    template: '<h3>给组件传属性：{{ titlea }} -- {{ inputmsg }} </h3>'
+});
+
+// 组件实例：列表，需要传入一个数组
+Vue.component('ordered-list', {
+    props: ["title", 'list'],
+    template: '<div style="border:1px solid #457689;padding:10px;"><h3>{{ title }}</h3><ul><li v-on:click="click(index, value)" v-for="(value, index) in list">{{ value }}</li></ul></div>',
+    data: function () {
+      return {
+        counter: 0
+      }
+    },
+    methods: {
+      click: function (index, value) {
+        this.$emit('itemclicked', index, value);
+        this.counter += 1;
+       
+      }
+    },
+});
+
+// 属性验证
+Vue.component('ordered-list2', {
+    props: {
+      title: Number, 
+      list: [String, Number],
+      age:{
+        type: Number,
+        required: true,
+      }
+    },
+    template: '<div style="border:1px solid #457689;padding:10px;"><h3>{{ title }}</h3><ul><li v-on:click="click(index, value)" v-for="(value, index) in list">{{ value }}</li></ul></div>',
+    data: function () {
+      return {
+        counter: 0
+      }
+    },
+    methods: {
+      click: function (index, value) {
+        this.$emit('itemclicked', index, value);
+        this.counter += 1;
+       
+      }
+    },
+});
+
+var vm = new Vue({
+  el: '#app',
+  data: {
+    message: '{{ message }}可以显示文本',
+    message2: 'RUNOOB',
+    message3: '1234-abcd-我是则不达',
+    message4: 'abcdefg',
+    html_message: '<h3>v-html属性可以显示html内容</h3>',
+    class1: false,
+     checked : false,
+    checkedNames: [],
+    form_input: "输入框",
+    form_input2: "",
+    form_password: "11",
+    form_radio: "female",
+    form_select: "value-fiat",
+    form_textarea: "textarea输入区",
+    ok: true,
+    id : 1,
+    seen: false,
+    img2: '11.jpg',
+    type: 'D',
+    sites: [
+      { name: 'Runoob' },
+      { name: 'Google' },
+      { name: 'Taobao' }
+    ],
+    list: ["魔兽世界", "守望先锋", "神秘手游"],
+    object: {
+      name: '守望先锋',
+      url: '又叫守望屁股',
+      slogan: '我的账号是xxxxx@eee.cdcc'
+    },
+    v1: 12,
+    v2: "abc",
+    isActive: true,
+    hasError: true,
+    error: {
+      type:"fatal",
+    },
+    activeClass: 'active',
+    errorClass: 'text-danger',
+    activeColor: 'green',
+	  fontSize: 30,
+    styleObject: {
+      color: 'green',
+      fontSize: '30px'
+    },
+    baseStyles: {
+      color: 'green',
+      fontSize: '30px'
+    },
+	  overridingStyles: {
+      'font-weight': 'bold'
+    },
+    counter: 0,
+  },
+  methods: {
+    reverseMessage: function () {
+      this.message3 = this.message3.split('').reverse().join('');
+    },
+    greet: function (event) {
+      // `this` 在方法里指当前 Vue 实例
+      alert('Hello ' + this.name + '!')
+      // `event` 是原生 DOM 事件
+      if (event) {
+          alert(event.target.tagName)
+      }
+    },
+    say: function (message) {
+      alert(message)
+    },
+    defaultClick: function () {
+      alert("clicked");
+    },
+    onListItemClick222: function (index, value) {
+       alert(index + ", " + value);
+    },
+  },
+  filters:{
+    /** 首字母大写 */
+    capitalize: function (value) {
+      if (!value) return ''
+      value = value.toString()
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    }
+  },
+  computed:{
+    // 计算属性的 getter
+    reversedMessage: function () {
+      // `this` 指向 vm 实例
+      return this.message3.split('').reverse().join('');
+    },
+    property: {
+      // getter
+      get: function () {
+        return this.v1 + '-' + this.v2
+      },
+      // setter
+      set: function (newValue) {
+        var names = newValue.split(',')
+        this.v1 = names[0]
+        this.v2 = names[names.length - 1]
+      }
+    },
+    classObject: function () {
+      return {
+        active: this.isActive && !this.error,
+        'text-danger': this.error && this.error.type === 'fatal',
+      }
+    },
+  },
+  components: {
+    // <runoob2> 将只在父模板可用
+    'child': runoob2
+  },
+});
+
+vm.message = '{{ message }}可以显示文本哦~~';
+vm.$data; ///可以访问所有model
+vm.$el === document.getElementById('app') // -> true
+
+//监听某个model的变化：
+vm.$watch('form_input', function (newVal, oldVal) {
+  // 这个回调将在 `vm.form_input`  改变后调用
+  console.log("form_input has changed");
+});
+
+//使用setter给属性赋值，并且会触发计算属性
+vm.property = "哈哈,呵呵";
+
+</script>
+    </body>
+</html>
